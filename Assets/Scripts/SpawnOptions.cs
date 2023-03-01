@@ -4,13 +4,13 @@ using UnityEngine;
 [Serializable]
 public struct SpawnOptions
 {
-    [SerializeField] private GameObject objectToSpawn;
-    [SerializeField] private int count;
-    [SerializeField] private float wait;
-    [SerializeField] private float every;
+    [SerializeField] private GameObject _objectToSpawn;
+    [SerializeField] private int _count;
+    [SerializeField] private float _wait;
+    [SerializeField] private float _every;
 
-    public GameObject ObjectToSpawn => objectToSpawn;
-    public int Count => count;
-    public float Wait => wait;
-    public float Every => every;
+    public GameObject ObjectToSpawn => _objectToSpawn;
+    public int Count => _count;
+    public float Wait => _wait;
+    public float Every => _every;
 }

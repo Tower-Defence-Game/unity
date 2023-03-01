@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private List<SpawnOptions> spawnOptions = new List<SpawnOptions>();
+    [SerializeField] private List<SpawnOptions> _spawnOptions = new List<SpawnOptions>();
 
     void Start()
     {
-        foreach (var spawn in spawnOptions)
+        foreach (var spawn in _spawnOptions)
             StartCoroutine(CreateObjectsCoroutine(spawn.ObjectToSpawn, spawn.Wait, spawn.Every, spawn.Count));
     }
 
