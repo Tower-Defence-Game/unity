@@ -76,7 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224,
+    type: 3}
   m_Color: {r: 0.3255162, g: 0.34120098, b: 0.7264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6449dee95f393e64da4ee5bafa65892b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
-  _path: {fileID: 7735865818379986260, guid: 6bc9ff2f147819c45bb67c6f600f6c67, type: 3}
+  moveSpeed: 1
+  path: {fileID: 7735865818379986260, guid: 6bc9ff2f147819c45bb67c6f600f6c67, type: 3}
 --- !u!58 &6832685309699788849
 CircleCollider2D:
   m_ObjectHideFlags: 0
