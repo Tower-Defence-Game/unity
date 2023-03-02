@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -18,7 +18,7 @@ public class PathMovement : MonoBehaviour
     {
         _pathNodes = _path.GetComponentsInChildren<Transform>();
 
-        // GetComponentsInChildren может возвращать также объект самого родителя, так что тут нужна такая проверка
+        // GetComponentsInChildren РјРѕР¶РµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ С‚Р°РєР¶Рµ РѕР±СЉРµРєС‚ СЃР°РјРѕРіРѕ СЂРѕРґРёС‚РµР»СЏ, С‚Р°Рє С‡С‚Рѕ С‚СѓС‚ РЅСѓР¶РЅР° С‚Р°РєР°СЏ РїСЂРѕРІРµСЂРєР°
         _currentNode = _pathNodes[0].gameObject.GetInstanceID() == _path.GetInstanceID() ? 1 : 0;
         ProcessNextNode();
     }
