@@ -19,7 +19,7 @@ public class PathMovement : MonoBehaviour
         _pathNodes = path.GetComponentsInChildren<Transform>();
 
         // GetComponentsInChildren может возвращать также объект самого родителя, так что тут нужна такая проверка
-        _currentNode = _pathNodes[0].gameObject.GetInstanceID() == path.GetInstanceID() ? 1 : 0;
+        _currentNode = _pathNodes[0].gameObject == path ? 1 : 0;
         ProcessNextNode();
     }
 
