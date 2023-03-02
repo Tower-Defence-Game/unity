@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PathMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private GameObject _path;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject path;
     private Transform[] _pathNodes;
     private float _timer;
     private Vector3 _currentDestination;
@@ -16,10 +16,10 @@ public class PathMovement : MonoBehaviour
 
     void Start()
     {
-        _pathNodes = _path.GetComponentsInChildren<Transform>();
+        _pathNodes = path.GetComponentsInChildren<Transform>();
 
         // GetComponentsInChildren может возвращать также объект самого родителя, так что тут нужна такая проверка
-        _currentNode = _pathNodes[0].gameObject.GetInstanceID() == _path.GetInstanceID() ? 1 : 0;
+        _currentNode = _pathNodes[0].gameObject.GetInstanceID() == path.GetInstanceID() ? 1 : 0;
         ProcessNextNode();
     }
 
@@ -30,7 +30,7 @@ public class PathMovement : MonoBehaviour
         _startPosition = gameObject.transform.position;
 
         float distance = Vector3.Distance(_startPosition, _currentDestination);
-        _transitionDuration = distance / _moveSpeed;
+        _transitionDuration = distance / moveSpeed;
     }
 
     bool IsNodeComplete()
