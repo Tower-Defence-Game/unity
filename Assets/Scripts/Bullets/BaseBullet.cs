@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bullets;
 using Classes.Damage;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseBullet : MonoBehaviour, IBullet
@@ -21,6 +22,11 @@ public class BaseBullet : MonoBehaviour, IBullet
     
     void FixedUpdate()
     {
+        if (Target.IsDestroyed())
+        {
+            Destroy(gameObject);
+        }
+        
         var position = transform.position;
         Vector3 direction = position - Target.Position;
         
