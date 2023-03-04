@@ -4,9 +4,8 @@ namespace Bullets
 {
     public interface IBullet
     {
-        IDamage Damage { get; }
-        Enemy Target { get; }
+        Damage Damage { get; }
 
-        public void Init(IDamage damage, Enemy target);
+        public void Init(Damage damage, Enemy target);
     }
 }

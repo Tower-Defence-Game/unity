@@ -1,57 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Interfaces.ObjectProperties;
 using UnityEngine;
 
+[RequireComponent(typeof(IHaveSpeed))]
 public class PathMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject path;
-    private Transform[] _pathNodes;
-    private float _timer;
-    private Vector3 _currentDestination;
+    private IHaveSpeed _speedObject;
+    private List<Transform> _pathNodes;
     private int _currentNode;
-    private Vector3 _startPosition;
     private float _transitionDuration;
+    private bool IsReachedTheEnd => _pathNodes == null || _currentNode >= _pathNodes.Count;
 
     void Start()
     {
-        _pathNodes = path.GetComponentsInChildren<Transform>();
+        _pathNodes = path.GetComponentsInChildren<Transform>().ToList();
+        _speedObject = GetComponent<IHaveSpeed>();
 
         // GetComponentsInChildren может возвращать также объект самого родителя, так что тут нужна такая проверка
-        _currentNode = _pathNodes[0].gameObject == path ? 1 : 0;
-        ProcessNextNode();
+        if (_pathNodes[0].gameObject == path)
+        {
+            _pathNodes.RemoveAt(0);
+        }
     }
 
-    void ProcessNextNode()
+    private void OnDrawGizmosSelected()
     {
-        _timer = 0;
-        _currentDestination = _pathNodes[_currentNode].position;
-        _startPosition = gameObject.transform.position;
-
-        float distance = Vector3.Distance(_startPosition, _currentDestination);
-        _transitionDuration = distance / moveSpeed;
-    }
-
-    bool IsNodeComplete()
-    {
-        return gameObject.transform.position != _currentDestination;
+        if (!IsReachedTheEnd)
+        {
+            Gizmos.DrawLine(transform.position, _pathNodes[_currentNode].position);
+        }
     }
 
     void Update()
     {
-        _timer += Time.deltaTime;
-        if(IsNodeComplete())
+        if (IsReachedTheEnd)
         {
-            float movementProgress = _timer / _transitionDuration;
-            gameObject.transform.position = Vector3.Lerp(_startPosition, _currentDestination, movementProgress);
+            return;
         }
-        else
+
+        var speed = _speedObject.Speed * Time.deltaTime;
+        var leftMovement = speed;
+
+        do
         {
-            if(_currentNode < _pathNodes.Length - 1)
+            var currentPosition = gameObject.transform.position;
+            var currentDestination = _pathNodes[_currentNode].position;
+            var currentDistance = Vector3.Distance(currentPosition, currentDestination);
+
+            Vector3 direction = Vector3.Normalize(currentDestination - currentPosition);
+
+            if (currentDistance < leftMovement)
             {
+                gameObject.transform.position = currentDestination;
+                leftMovement -= currentDistance;
                 _currentNode++;
-                ProcessNextNode();
             }
-        }
+            else
+            {
+                gameObject.transform.position += direction * leftMovement;
+                leftMovement = 0;
+            }
+        } while (leftMovement > 0 && !IsReachedTheEnd);
     }
 }
