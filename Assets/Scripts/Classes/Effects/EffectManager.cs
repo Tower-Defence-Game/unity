@@ -34,7 +34,7 @@ public class EffectManager
     {
         _effectsOrigin.Remove(effect);
 
-        var effects = _effects.FindAll(e => e.OriginEffect = effect);
+        var effects = _effects.FindAll(e => e.OriginEffect == effect);
         effects.ForEach(e => e.Recycle());
         _effects.RemoveAll(e => effect.OriginEffect == effect);
     }
