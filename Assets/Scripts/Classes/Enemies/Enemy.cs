@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Classes.Combinations;
+﻿using Classes.Combinations;
 using Classes.Damage;
 using Classes.Elements;
 using Interfaces.ObjectAbilities;
@@ -20,7 +19,6 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
     public float Health { get; set; }
     public float Resistance { get; set; }
     public Element Element => element;
-    public List<Element> Elements { get; } = new();
     public ElementCombinationList ElementCombinationList => elementCombinationList;
     public ElementsCombinationManager ElementsCombinationManager { get; private set; }
     public EffectManager EffectManager { get; private set; }
