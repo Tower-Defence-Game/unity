@@ -36,7 +36,7 @@ public class EffectManager
 
         var effects = _effects.FindAll(e => e.OriginEffect = effect);
         effects.ForEach(e => e.Recycle());
-        _effects.RemoveAll(e => effect.OriginEffect = effect);
+        _effects.RemoveAll(e => effect.OriginEffect == effect);
     }
 
     public void ResetEffects()
