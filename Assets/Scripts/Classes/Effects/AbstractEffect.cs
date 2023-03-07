@@ -6,10 +6,11 @@ namespace Classes.Effects
     {
         [SerializeField] private bool isStackable;
         [SerializeField] private bool isRefreshable;
+        [SerializeField] private float duration;
         public bool IsStackable => isStackable;
         public bool IsRefreshable => isRefreshable;
+        public float Duration => duration;
         public AbstractEffect OriginEffect { get; set; }
-        public abstract float Duration { get; }
         public virtual float TimeLeft { get; protected set; }
         public bool IsFinished => TimeLeft < 0;
 
