@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4475481219742789742}
   - component: {fileID: 4475481219742789739}
   m_Layer: 0
-  m_Name: BaseTower
+  m_Name: TestBaseTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.764151, g: 0.10380915, b: 0.10380915, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.04887724, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9543ec4189d464e48b21c1a554e04930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
-  damage: 50
+  cooldown: 0.5
+  damage: 20
+  element: {fileID: 11400000, guid: 6a5cd42a9d5216c4dbbd3102b7d4da65, type: 2}
   turret: {fileID: 4475481219742789740}
   tower: {fileID: 4475481219742789740}
-  bullet: {fileID: 4537942379443369803, guid: e1b59ca466c221a4aa32a1dc3885cc1b, type: 3}
+  bullet: {fileID: 186133662666652967, guid: e1b59ca466c221a4aa32a1dc3885cc1b, type: 3}
