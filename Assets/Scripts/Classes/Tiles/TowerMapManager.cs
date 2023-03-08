@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class TowerMapManager : MonoBehaviour, IHavePreStart
 {
-    // Tilemap, где есть только тайлы, на которые можно ставить башни
-    [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")][SerializeField] 
+    // Tilemap, РіРґРµ РµСЃС‚СЊ С‚РѕР»СЊРєРѕ С‚Р°Р№Р»С‹, РЅР° РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃС‚Р°РІРёС‚СЊ Р±Р°С€РЅРё
+    [Tooltip("Tilemap, РіРґРµ РµСЃС‚СЊ С‚РѕР»СЊРєРѕ С‚Р°Р№Р»С‹, РЅР° РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃС‚Р°РІРёС‚СЊ Р±Р°С€РЅРё")][SerializeField] 
     private Tilemap tilemap;
     [SerializeField] private Color aviableColor = Color.green;
     [SerializeField] private Color unaviableColor = Color.red;
@@ -50,7 +50,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     {
         if(IsTowerStand(tilePosition))
         {
-            print("Башня уже стоит тут.");
+            print("Р‘Р°С€РЅСЏ СѓР¶Рµ СЃС‚РѕРёС‚ С‚СѓС‚.");
             return;
         }
 
