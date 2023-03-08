@@ -13,11 +13,25 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private Transform turret = default;
     [SerializeField] private Transform tower = default;
     [SerializeField] private BaseBullet bullet = default;
+    [SerializeField] private Vector2Int size = Vector2Int.one;
 
     private EnemyDetector _enemyDetector;
     private Enemy Enemy => _enemyDetector.TargetEnemy;
 
     private float _cooldownTimer = 0f;
+    public Vector2Int Size => size;
+
+    private void OnDrawGizmos()
+    {
+        for(int x = 0; x < size.x; x++)
+        {
+            for(int y = 0; y < size.y; y++)
+            {
+                Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+                Gizmos.DrawCube(transform.position + new Vector3(x, y, 0), new Vector3(1, 1, .1f));
+            }
+        }
+    }
 
     private void OnValidate()
     {

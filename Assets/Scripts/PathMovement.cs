@@ -23,6 +23,7 @@ public class PathMovement : MonoBehaviour
         {
             _pathNodes.RemoveAt(0);
         }
+        gameObject.transform.position = _pathNodes[0].transform.position;
     }
 
     private void OnDrawGizmosSelected()

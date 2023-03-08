@@ -59,6 +59,7 @@ namespace Classes.Elements
                 var spriteRenderer = new GameObject().AddComponent<SpriteRenderer>();
                 spriteRenderer.sprite = element.Icon;
                 spriteRenderer.transform.SetParent(transform);
+                spriteRenderer.sortingOrder = objectSprite.sortingOrder;
                 _elementsSpriteRenderers.Add(new KeyValuePair<Element, SpriteRenderer>(element, spriteRenderer));
                 hasChanges = true;
             }
