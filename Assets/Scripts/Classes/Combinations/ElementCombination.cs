@@ -16,7 +16,7 @@ namespace Classes.Combinations
         public AbstractEffect Effect => effect;
         public List<Element> Elements => elements;
 
-        public bool IsMatch(List<Element> currentElements)
+        public bool IsMatch(IReadOnlyList<Element> currentElements)
         {
             return elements.All(e => currentElements.Any(el => el == e));
         }

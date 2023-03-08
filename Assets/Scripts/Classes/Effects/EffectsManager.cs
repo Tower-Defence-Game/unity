@@ -2,13 +2,13 @@
 using Classes.Effects;
 using Interfaces.ObjectAbilities;
 
-public class EffectManager
+public class EffectsManager
 {
     private readonly List<AbstractEffect> _effects = new();
     private HashSet<AbstractEffect> _effectsOrigin = new();
     private readonly ICanHaveEffects _owner;
 
-    public EffectManager(ICanHaveEffects owner)
+    public EffectsManager(ICanHaveEffects owner)
     {
         _owner = owner;
     }

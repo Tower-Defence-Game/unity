@@ -2,6 +2,6 @@
 {
     public interface ICanHaveEffects
     {
-        public EffectManager EffectManager { get; }
+        public EffectsManager EffectsManager { get; }
     }
 }
