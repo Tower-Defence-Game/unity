@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4475481219742789741, guid: 2971f1e62e7cfec408baa90b8beed8c7, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2971f1e62e7cfec408baa90b8beed8c7, type: 3}
 --- !u!1001 &663840880
@@ -201,11 +205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475481219742789740, guid: 54e568e25a713594db7d24e4ba8fa246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.27
+      value: -9.89
       objectReference: {fileID: 0}
     - target: {fileID: 4475481219742789740, guid: 54e568e25a713594db7d24e4ba8fa246, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 4475481219742789740, guid: 54e568e25a713594db7d24e4ba8fa246, type: 3}
       propertyPath: m_LocalPosition.z
@@ -409,6 +413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestBaseTower (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4475481219742789739, guid: 2971f1e62e7cfec408baa90b8beed8c7, type: 3}
+      propertyPath: element
+      value: 
+      objectReference: {fileID: 11400000, guid: dfba6a8ed3595694f891e396853a48fa, type: 2}
     - target: {fileID: 4475481219742789740, guid: 2971f1e62e7cfec408baa90b8beed8c7, type: 3}
       propertyPath: m_RootOrder
       value: 1

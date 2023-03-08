@@ -13,7 +13,7 @@ namespace Classes.Combinations
         [SerializeField] private List<ElementCombination> combinations;
 
         [CanBeNull]
-        public ElementCombination GetCombination(List<Element> currentElements)
+        public ElementCombination GetCombination(IReadOnlyList<Element> currentElements)
         {
             return combinations.FirstOrDefault(c => c.IsMatch(currentElements));
         }

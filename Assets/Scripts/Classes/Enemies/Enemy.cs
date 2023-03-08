@@ -6,7 +6,7 @@ using Interfaces.ObjectProperties;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResistance, ICanTakeDamage, ICanHaveEffects,
+public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResistance, ICanTakeDamage,
     ICanCombineElement
 {
     [SerializeField] private float speed = 1;
@@ -19,9 +19,10 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
     public float Health { get; set; }
     public float Resistance { get; set; }
     public Element Element => element;
-    public ElementCombinationList ElementCombinationList => elementCombinationList;
+    public ElementsManager ElementsManager { get; private set; }
     public ElementsCombinationManager ElementsCombinationManager { get; private set; }
-    public EffectManager EffectManager { get; private set; }
+    public EffectsManager EffectsManager { get; private set; }
+    public ElementCombinationList ElementCombinationList => elementCombinationList;
     public Vector3 Position => transform.position;
 
     protected virtual void Start()
@@ -30,7 +31,8 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
         ResetSpeed();
         Health = health;
 
-        EffectManager = new EffectManager(this);
+        EffectsManager = new EffectsManager(this);
+        ElementsManager = new ElementsManager(this);
         ElementsCombinationManager = new ElementsCombinationManager(this);
     }
 
@@ -40,13 +42,13 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
         ResetSpeed();
 
         ElementsCombinationManager.Update();
-        EffectManager.Update(Time.deltaTime);
+        EffectsManager.Update(Time.deltaTime);
     }
 
     public virtual void TakeDamage(Damage damage)
     {
         Health -= damage.DamageValue / Resistance;
-        ElementsCombinationManager.AddElement(damage.ElementType);
+        ElementsManager.AddElement(damage.ElementType);
         if (Health <= 0)
         {
             Die();
