@@ -1,7 +1,7 @@
-using System;
 using Bullets;
 using Classes.Damage;
 using Classes.Elements;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyDetector))]
@@ -9,7 +9,7 @@ public class BaseTower : MonoBehaviour
 {
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private float damage = 50f;
-    [SerializeField] private Element element;
+    [SerializeField] [CanBeNull] private Element element;
     [SerializeField] private Transform turret = default;
     [SerializeField] private Transform tower = default;
     [SerializeField] private BaseBullet bullet = default;
@@ -24,11 +24,6 @@ public class BaseTower : MonoBehaviour
         if (turret == null)
         {
             turret = transform;
-        }
-
-        if (element == null)
-        {
-            throw new ArgumentException("Tower must have an element");
         }
     }
 

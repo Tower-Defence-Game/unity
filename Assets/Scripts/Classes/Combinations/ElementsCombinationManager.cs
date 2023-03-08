@@ -35,6 +35,11 @@ namespace Classes.Combinations
         // check for combination and apply effects
         public ElementCombination CheckForCombination()
         {
+            if (ElementCombinationList == null)
+            {
+                return null;
+            }
+
             var combination = ElementCombinationList.GetCombination(ElementsManager.Elements);
 
             return combination;

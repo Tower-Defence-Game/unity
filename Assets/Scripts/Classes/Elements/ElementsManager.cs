@@ -11,9 +11,10 @@ namespace Classes.Elements
         private readonly List<Element> _elements = new();
         private readonly ICanHaveElements _owner;
         public IReadOnlyList<Element> Elements => _elements;
+        public IReadOnlyList<Element> ElementsWithoutOwner => _elements.Where(e => e != OwnerElement).ToList();
 
         [CanBeNull]
-        private Element OwnerElement => _owner is IHaveElement ownerWithElement ? ownerWithElement.Element : null;
+        public Element OwnerElement => _owner is IHaveElement ownerWithElement ? ownerWithElement.Element : null;
 
         public ElementsManager(ICanHaveElements owner)
         {
@@ -23,7 +24,7 @@ namespace Classes.Elements
 
         public void AddElement(Element element)
         {
-            if (element == OwnerElement)
+            if (element == null || element == OwnerElement)
             {
                 return;
             }

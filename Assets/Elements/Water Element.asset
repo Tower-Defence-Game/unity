@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919ae1e6f98b466390454e9f547929fc, type: 3}
   m_Name: Water Element
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  icon: {fileID: 21300000, guid: e3061fa02328a2945af7501326840fb0, type: 3}
+  color: {r: 0.093342766, g: 0.15720402, b: 0.8679245, a: 0}
   description: 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8408268344606757857}
   - component: {fileID: 5443936462827026341}
   - component: {fileID: 3147550010772811242}
+  - component: {fileID: -692392916524874162}
   m_Layer: 9
   m_Name: TestFireEnemy
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   health: 100
   resistance: 1
   element: {fileID: 11400000, guid: a8f05389e6b795b42866ffd549829f8d, type: 2}
-  elementCombinationList: {fileID: 11400000, guid: 27d605f5bdd9e6749abd1c817d16d86f, type: 2}
+  elementCombinationList: {fileID: 0}
 --- !u!114 &5443936462827026341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +82,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-692392916524874162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519653195074960125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8e65b5c1ef48a3b4d10079512bed4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSprite: {fileID: 2810207304120192738}
+  yOffset: 0.5
+  xOffset: 0.1
+  drawOwnElement: 1
 --- !u!1 &4029535326594621156
 GameObject:
   m_ObjectHideFlags: 0
