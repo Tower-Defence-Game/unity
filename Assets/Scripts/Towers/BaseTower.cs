@@ -21,16 +21,10 @@ public class BaseTower : MonoBehaviour
     private float _cooldownTimer = 0f;
     public Vector2Int Size => size;
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        for(int x = 0; x < size.x; x++)
-        {
-            for(int y = 0; y < size.y; y++)
-            {
-                Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
-                Gizmos.DrawCube(transform.position + new Vector3(x, y, 0), new Vector3(1, 1, .1f));
-            }
-        }
+        Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+        Gizmos.DrawCube(transform.position + new Vector3(0, 0, 0), new Vector3(size.x, size.y, .1f));
     }
 
     private void OnValidate()

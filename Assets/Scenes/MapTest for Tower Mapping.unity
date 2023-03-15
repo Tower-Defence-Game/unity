@@ -8378,6 +8378,7 @@ MonoBehaviour:
   tilemap: {fileID: 893518501}
   aviableColor: {r: 0, g: 1, b: 0, a: 0.5019608}
   unaviableColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+  aviability: {fileID: 1539210188621819103, guid: 5b25d170505bf1a4f958bba2082f38ae, type: 3}
 --- !u!4 &937095207
 Transform:
   m_ObjectHideFlags: 0
@@ -8495,7 +8496,7 @@ MonoBehaviour:
         m_MethodName: StartPlacing
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4475481219742789739, guid: 54e568e25a713594db7d24e4ba8fa246, type: 3}
+          m_ObjectArgument: {fileID: 8591872126908235087, guid: c2cb143e967d7d24a9f1055cfc01776d, type: 3}
           m_ObjectArgumentAssemblyTypeName: BaseTower, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &519653195074960125
+--- !u!1 &2674123868032491026
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,97 +8,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8646464222146149811}
-  - component: {fileID: 8408268344606757857}
-  - component: {fileID: 5443936462827026341}
-  - component: {fileID: 3147550010772811242}
-  - component: {fileID: -692392916524874162}
-  m_Layer: 9
-  m_Name: TestFireEnemy
+  - component: {fileID: 261376458533071045}
+  - component: {fileID: 6157212637225520183}
+  - component: {fileID: 8591872126908235087}
+  m_Layer: 0
+  m_Name: Test Water Tower with Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8646464222146149811
+--- !u!4 &261376458533071045
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519653195074960125}
+  m_GameObject: {fileID: 2674123868032491026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7247136888131520423}
+  - {fileID: 2659783132965955837}
+  - {fileID: 4907148984467885585}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8408268344606757857
+--- !u!114 &6157212637225520183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519653195074960125}
+  m_GameObject: {fileID: 2674123868032491026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac599ec6e3e4b7faeb9d8c48e18401e, type: 3}
+  m_Script: {fileID: 11500000, guid: d9a95f715000e4645a1bec3c8fbd757d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  health: 100
-  resistance: 1
-  element: {fileID: 11400000, guid: a8f05389e6b795b42866ffd549829f8d, type: 2}
-  elementCombinationList: {fileID: 11400000, guid: 27d605f5bdd9e6749abd1c817d16d86f, type: 2}
---- !u!114 &5443936462827026341
+  targetingRange: 2.74
+--- !u!114 &8591872126908235087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519653195074960125}
+  m_GameObject: {fileID: 2674123868032491026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6449dee95f393e64da4ee5bafa65892b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9543ec4189d464e48b21c1a554e04930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 0}
---- !u!58 &3147550010772811242
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519653195074960125}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &-692392916524874162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519653195074960125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8e65b5c1ef48a3b4d10079512bed4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectSprite: {fileID: 2810207304120192738}
-  yOffset: 0.5
-  xOffset: 0.1
-  drawOwnElement: 1
---- !u!1 &4029535326594621156
+  cooldown: 0.01
+  damage: 5
+  element: {fileID: 11400000, guid: 8d8d77cc2336d73499918555dba6a863, type: 2}
+  turret: {fileID: 4907148984467885585}
+  tower: {fileID: 2659783132965955837}
+  bullet: {fileID: 186133662666652967, guid: e1b59ca466c221a4aa32a1dc3885cc1b, type: 3}
+  size: {x: 2, y: 2}
+--- !u!1 &2869674514945765571
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,37 +75,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7247136888131520423}
-  - component: {fileID: 2810207304120192738}
-  m_Layer: 9
-  m_Name: Triangle
+  - component: {fileID: 4907148984467885585}
+  m_Layer: 0
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7247136888131520423
+--- !u!4 &4907148984467885585
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4029535326594621156}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 2869674514945765571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8646464222146149811}
+  m_Father: {fileID: 261376458533071045}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4342307923153713031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2659783132965955837}
+  - component: {fileID: 9204226154054051412}
+  m_Layer: 0
+  m_Name: Water Tower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2659783132965955837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342307923153713031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 261376458533071045}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2810207304120192738
+--- !u!212 &9204226154054051412
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4029535326594621156}
+  m_GameObject: {fileID: 4342307923153713031}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -171,12 +171,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.9948019, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 1443644505, guid: 2edbc37619b680c418923cd8eff52ec1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.31, y: 0.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
