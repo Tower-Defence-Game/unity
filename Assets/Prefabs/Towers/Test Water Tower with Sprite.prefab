@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9543ec4189d464e48b21c1a554e04930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.01
+  cooldown: 1
   damage: 5
   element: {fileID: 11400000, guid: 8d8d77cc2336d73499918555dba6a863, type: 2}
   turret: {fileID: 4907148984467885585}

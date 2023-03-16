@@ -46,6 +46,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             for (int y = 0; y < PickedTower.Size.y; y++)
             {
                 result = result && tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) != null;
+                if (!result) break;
             }
         }
         return result;
@@ -61,6 +62,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
                 BaseTower tower;
                 TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out tower);
                 result = result || tower != null;
+                if (result) break;
             }
         }
         return result;
@@ -73,12 +75,6 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
     void PutTower(BaseTower tower, Vector3Int tilePosition)
     {
-        if(IsTowerStand(tilePosition))
-        {
-            print("Башня уже стоит тут.");
-            return;
-        }
-
         TowerStands[tilePosition] = Instantiate(tower, GetTowerCoords(tilePosition), Quaternion.identity);
         for (int x = 0; x < PickedTower.Size.x; x++)
         {
@@ -103,7 +99,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         FlyingTower.GetComponentInChildren<SpriteRenderer>().color = tempColor;
 
         FlyingAviability.transform.localScale = new Vector3(PickedTower.Size.x, PickedTower.Size.y, 0);
-        FlyingAviability.transform.position = tilemap.GetCellCenterWorld(tilePosition) + CenteringVector;
+        FlyingAviability.transform.position = FlyingTower.transform.position;
 
         var spriteRenderer = FlyingAviability.GetComponentInChildren<SpriteRenderer>();
 
