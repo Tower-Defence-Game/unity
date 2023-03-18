@@ -9,7 +9,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResistance, ICanTakeDamage,
     ICanCombineElement
 {
-    [SerializeField] private float speed = 1;
+    [Header("Enemy")] [SerializeField] private float speed = 1;
     [SerializeField] private float health = 100;
     [SerializeField] private float resistance = 1;
     [SerializeField] private Element element;
@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
 
     public float Speed { get; set; }
     public float Health { get; set; }
+    public float MaxHealth => health;
     public float Resistance { get; set; }
     public Element Element => element;
     public ElementsManager ElementsManager { get; private set; }
