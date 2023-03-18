@@ -9,9 +9,11 @@ public class BaseBullet : MonoBehaviour, IBullet
     public Damage Damage { get; private set; }
     public Enemy Target { get; private set; }
 
+    private object _origin;
 
-    public void Init(Damage damage, Enemy target)
+    public void Init(object origin, Damage damage, Enemy target)
     {
+        _origin = origin;
         Damage = damage;
         Target = target;
     }
@@ -38,7 +40,7 @@ public class BaseBullet : MonoBehaviour, IBullet
         // check if bullet reached the enemy
         if (position == targetPosition)
         {
-            Target.TakeDamage(Damage);
+            Target.TakeDamage(_origin, Damage);
             Destroy(gameObject);
         }
     }

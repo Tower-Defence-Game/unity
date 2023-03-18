@@ -1,5 +1,6 @@
 ﻿using System;
 using Classes.Effects.Enums;
+using Interfaces.ObjectAbilities;
 using Interfaces.ObjectProperties;
 using UnityEngine;
 
@@ -20,6 +21,18 @@ namespace Classes.Effects
         {
             if (target is not IHaveHealth haveHealth)
             {
+                Debug.LogWarning("HealthDurationEffect is applied to object without IHaveHealth");
+                return;
+            }
+
+            if (
+                healthDurationEffectType == HealthInstantEffectType.RelativeToTakenDamage &&
+                target is not ICanTakeDamage
+            )
+            {
+                Debug.LogWarning(
+                    "HealthDurationEffect with RelativeToTakenDamage type is applied to object without ICanTakeDamage"
+                );
                 return;
             }
 
@@ -27,6 +40,8 @@ namespace Classes.Effects
             {
                 HealthInstantEffectType.RelativeToBaseHealth => haveHealth.MaxHealth * healthModifier,
                 HealthInstantEffectType.RelativeToCurrentHealth => haveHealth.Health * healthModifier,
+                HealthInstantEffectType.RelativeToTakenDamage =>
+                    (((ICanTakeDamage)target).LastTakenDamage?.DamageValue ?? 0f) * healthModifier,
                 HealthInstantEffectType.Absolute => healthModifier,
                 _ => throw new ArgumentOutOfRangeException()
             };

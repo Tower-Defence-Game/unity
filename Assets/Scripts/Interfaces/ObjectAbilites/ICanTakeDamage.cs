@@ -4,6 +4,7 @@ namespace Interfaces.ObjectAbilities
 {
     public interface ICanTakeDamage
     {
-        public void TakeDamage(Damage damage);
+        public Damage LastTakenDamage { get; }
+        public void TakeDamage(object origin, Damage damage);
     }
 }
