@@ -52,7 +52,7 @@ MonoBehaviour:
   health: 100
   resistance: 1
   element: {fileID: 11400000, guid: a8f05389e6b795b42866ffd549829f8d, type: 2}
-  elementCombinationList: {fileID: 0}
+  elementCombinationList: {fileID: 11400000, guid: 27d605f5bdd9e6749abd1c817d16d86f, type: 2}
 --- !u!114 &5443936462827026341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0.9948019, g: 1, b: 0, a: 1}
   m_FlipX: 0
