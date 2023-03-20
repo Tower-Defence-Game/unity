@@ -72,6 +72,6 @@ public class BaseTower : MonoBehaviour
 
         Debug.Assert(bulletScript != null, "Bullet must implement IBullet interface!");
 
-        bulletScript.Init(new Damage(element, damage), Enemy);
+        bulletScript.Init(this, new Damage(element, damage), Enemy);
     }
 }

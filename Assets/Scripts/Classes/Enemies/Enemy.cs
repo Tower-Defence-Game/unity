@@ -9,14 +9,29 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResistance, ICanTakeDamage,
     ICanCombineElement
 {
-    [SerializeField] private float speed = 1;
+    [Header("Enemy")] [SerializeField] private float speed = 1;
     [SerializeField] private float health = 100;
     [SerializeField] private float resistance = 1;
     [SerializeField] private Element element;
     [SerializeField] private ElementCombinationList elementCombinationList;
 
     public float Speed { get; set; }
-    public float Health { get; set; }
+    public float MaxHealth => health;
+
+    public float Health
+    {
+        get => _currentHealth;
+        set
+        {
+            _currentHealth = value;
+            if (_currentHealth < 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private float _currentHealth;
     public float Resistance { get; set; }
     public Element Element => element;
     public ElementsManager ElementsManager { get; private set; }
@@ -24,6 +39,8 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
     public EffectsManager EffectsManager { get; private set; }
     public ElementCombinationList ElementCombinationList => elementCombinationList;
     public Vector3 Position => transform.position;
+    public Damage LastTakenDamage { get; private set; } = null;
+
 
     protected virtual void Start()
     {
@@ -45,14 +62,11 @@ public abstract class Enemy : MonoBehaviour, IHaveSpeed, IHaveHealth, IHaveResis
         EffectsManager.Update(Time.deltaTime);
     }
 
-    public virtual void TakeDamage(Damage damage)
+    public virtual void TakeDamage(object origin, Damage damage)
     {
         Health -= damage.DamageValue / Resistance;
         ElementsManager.AddElement(damage.ElementType);
-        if (Health <= 0)
-        {
-            Die();
-        }
+        LastTakenDamage = damage;
     }
 
     public virtual void Die()

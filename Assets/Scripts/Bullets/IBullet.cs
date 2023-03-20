@@ -6,6 +6,6 @@ namespace Bullets
     {
         Damage Damage { get; }
 
-        public void Init(Damage damage, Enemy target);
+        public void Init(object origin, Damage damage, Enemy target);
     }
 }

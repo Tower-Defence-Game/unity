@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Classes.Effects
 {
     [CreateAssetMenu(fileName = "SpeedModifierEffect", menuName = "Effects/Speed Modifier", order = 0)]
-    public class SpeedModifierEffect : AbstractEffect
+    public class SpeedModifierEffect : AbstractDurationEffect
     {
         [Tooltip("Модификатор скорости")] [Min(0)] [SerializeField]
         private float modifier;
