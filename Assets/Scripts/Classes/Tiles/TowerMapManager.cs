@@ -22,6 +22,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
     public bool IsLevelStarted { get; set; } = false;
     public Vector3 CenteringVector => new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
+    public bool AfterStartDone { get; set; } = false;
 
     public void StartPlacing(BaseTower towerPrefab)
     {
@@ -112,7 +113,17 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
     void Update()
     {
-        if(IsLevelStarted || PickedTower == null)
+        if (AfterStartDone) return;
+        
+        if (IsLevelStarted)
+        {
+            tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+            AfterStartDone = true;
+            DestroyPreTower();
+            return;
+        }
+        
+        if (PickedTower == null)
         {
             DestroyPreTower();
             return;
