@@ -1,18 +1,16 @@
-using Interfaces.ObjectProperties;
-using System.Collections;
 using System.Collections.Generic;
+using Interfaces.ObjectProperties;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class TowerMapManager : MonoBehaviour, IHavePreStart
 {
     // Tilemap, где есть только тайлы, на которые можно ставить башни
-    [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")][SerializeField] 
+    [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")] [SerializeField]
     private Tilemap tilemap;
-    [SerializeField] private Color availableColor = new Color(0f, 1f, 0f, 0.5f);
-    [SerializeField] private Color unavailableColor = new Color(1f, 0f, 0f, 0.5f);
+
+    [SerializeField] private Color availableColor = new(0f, 1f, 0f, 0.5f);
+    [SerializeField] private Color unavailableColor = new(1f, 0f, 0f, 0.5f);
     [SerializeField] private GameObject availability;
     [SerializeField] private float flyingTowerAlpha = 0.85f;
     public Tilemap Tilemap => tilemap;
@@ -20,9 +18,38 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     public BaseTower FlyingTower { get; set; }
     public GameObject FlyingAvailability { get; set; }
     public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
+    public Vector3 CenteringVector => new(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
+    public bool AfterStartDone { get; set; }
+
+    private void Update()
+    {
+        if (AfterStartDone) return;
+
+        if (IsLevelStarted)
+        {
+            tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+            AfterStartDone = true;
+            DestroyPreTower();
+            return;
+        }
+
+        if (PickedTower == null)
+        {
+            DestroyPreTower();
+            return;
+        }
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - CenteringVector;
+
+        var selectedPosition = tilemap.WorldToCell(mousePosition);
+
+        var available = IsTileAvailable(selectedPosition);
+        DrawPreTower(selectedPosition, available);
+
+        if (Input.GetMouseButtonDown(0) && available) PutTower(PickedTower, selectedPosition);
+    }
+
     public bool IsLevelStarted { get; set; } = false;
-    public Vector3 CenteringVector => new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
-    public bool AfterStartDone { get; set; } = false;
 
     public void StartPlacing(BaseTower towerPrefab)
     {
@@ -30,64 +57,59 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         PickedTower = towerPrefab;
     }
 
-    Vector3 GetTowerCoords(Vector3Int tilePosition)
+    private Vector3 GetTowerCoords(Vector3Int tilePosition)
     {
         return tilemap.GetCellCenterWorld(tilePosition) + CenteringVector;
     }
 
-    bool IsTileForTower(Vector3Int tilePosition)
+    private bool IsTileForTower(Vector3Int tilePosition)
     {
-        bool result = true;
-        for(int x = 0; x < PickedTower.Size.x; x++)
+        var result = true;
+        for (var x = 0; x < PickedTower.Size.x; x++)
+        for (var y = 0; y < PickedTower.Size.y; y++)
         {
-            for (int y = 0; y < PickedTower.Size.y; y++)
-            {
-                result = result && tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) != null;
-                if (!result) break;
-            }
+            result = result && tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) != null;
+            if (!result) break;
         }
+
         return result;
     }
 
-    bool IsTowerStand(Vector3Int tilePosition)
+    private bool IsTowerStand(Vector3Int tilePosition)
     {
-        bool result = false;
-        for (int x = 0; x < PickedTower.Size.x; x++)
+        var result = false;
+        for (var x = 0; x < PickedTower.Size.x; x++)
+        for (var y = 0; y < PickedTower.Size.y; y++)
         {
-            for (int y = 0; y < PickedTower.Size.y; y++)
-            {
-                TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out var tower);
-                result = result || tower != null;
-                if (result) break;
-            }
+            TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out var tower);
+            result = result || tower != null;
+            if (result) break;
         }
+
         return result;
     }
 
-    bool IsTileAvailable(Vector3Int tilePosition)
+    private bool IsTileAvailable(Vector3Int tilePosition)
     {
         return IsTileForTower(tilePosition) && !IsTowerStand(tilePosition);
     }
 
-    void PutTower(BaseTower tower, Vector3Int tilePosition)
+    private void PutTower(BaseTower tower, Vector3Int tilePosition)
     {
         TowerStands[tilePosition] = Instantiate(tower, GetTowerCoords(tilePosition), Quaternion.identity);
-        for (int x = 0; x < PickedTower.Size.x; x++)
-        {
-            for (int y = 0; y < PickedTower.Size.y; y++)
-            {
-                TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
-            }
-        }
+        for (var x = 0; x < PickedTower.Size.x; x++)
+        for (var y = 0; y < PickedTower.Size.y; y++)
+            TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
     }
 
-    void DrawPreTower(Vector3Int tilePosition, bool available)
+    private void DrawPreTower(Vector3Int tilePosition, bool available)
     {
         if (FlyingTower == null)
         {
             FlyingTower = Instantiate(PickedTower);
             FlyingAvailability = Instantiate(availability);
         }
+
         FlyingTower.transform.position = GetTowerCoords(tilePosition);
         var tempColor = FlyingTower.GetComponentInChildren<SpriteRenderer>().color;
         tempColor.a = flyingTowerAlpha;
@@ -101,44 +123,13 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         spriteRenderer.color = available ? availableColor : unavailableColor;
     }
 
-    void DestroyPreTower()
+    private void DestroyPreTower()
     {
         if (FlyingTower == null) return;
-        
+
         Destroy(FlyingTower.gameObject);
         FlyingTower = null;
         Destroy(FlyingAvailability);
         FlyingAvailability = null;
-    }
-
-    void Update()
-    {
-        if (AfterStartDone) return;
-        
-        if (IsLevelStarted)
-        {
-            tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
-            AfterStartDone = true;
-            DestroyPreTower();
-            return;
-        }
-        
-        if (PickedTower == null)
-        {
-            DestroyPreTower();
-            return;
-        }
-
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - CenteringVector;
-
-        Vector3Int selectedPosition = tilemap.WorldToCell(mousePosition);
-        
-        var available = IsTileAvailable(selectedPosition);
-        DrawPreTower(selectedPosition, available);
-
-        if (Input.GetMouseButtonDown(0) && available)
-        {
-            PutTower(PickedTower, selectedPosition);
-        }
     }
 }
