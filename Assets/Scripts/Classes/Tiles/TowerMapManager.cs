@@ -8,15 +8,9 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     // Tilemap, где есть только тайлы, на которые можно ставить башни
     [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")] [SerializeField]
     private Tilemap tilemap;
-
-    [SerializeField] private Color availableColor = new(0f, 1f, 0f, 0.5f);
-    [SerializeField] private Color unavailableColor = new(1f, 0f, 0f, 0.5f);
-    [SerializeField] private GameObject availability;
-    [SerializeField] private float flyingTowerAlpha = 0.85f;
+    [SerializeField] private TowerMapDrawer towerMapDrawer;
     public Tilemap Tilemap => tilemap;
     public BaseTower PickedTower { get; set; }
-    public BaseTower FlyingTower { get; set; }
-    public GameObject FlyingAvailability { get; set; }
     public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
     public Vector3 CenteringVector => new(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
     public bool AfterStartDone { get; set; }
@@ -27,15 +21,15 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
         if (IsLevelStarted)
         {
-            tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+            HideTilemap();
             AfterStartDone = true;
-            DestroyPreTower();
+            towerMapDrawer.DestroyPreTower();
             return;
         }
 
         if (PickedTower == null)
         {
-            DestroyPreTower();
+            towerMapDrawer.DestroyPreTower();
             return;
         }
 
@@ -44,7 +38,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         var selectedPosition = tilemap.WorldToCell(mousePosition);
 
         var available = IsTileAvailable(selectedPosition);
-        DrawPreTower(selectedPosition, available);
+        towerMapDrawer.DrawPreTower(GetTowerCoords(selectedPosition), available, PickedTower);
 
         if (Input.GetMouseButtonDown(0) && available) PutTower(PickedTower, selectedPosition);
     }
@@ -53,7 +47,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
     public void StartPlacing(BaseTower towerPrefab)
     {
-        if (FlyingTower != null) DestroyPreTower();
+        if (towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
         PickedTower = towerPrefab;
     }
 
@@ -102,34 +96,8 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
     }
 
-    private void DrawPreTower(Vector3Int tilePosition, bool available)
+    private void HideTilemap()
     {
-        if (FlyingTower == null)
-        {
-            FlyingTower = Instantiate(PickedTower);
-            FlyingAvailability = Instantiate(availability);
-        }
-
-        FlyingTower.transform.position = GetTowerCoords(tilePosition);
-        var tempColor = FlyingTower.GetComponentInChildren<SpriteRenderer>().color;
-        tempColor.a = flyingTowerAlpha;
-        FlyingTower.GetComponentInChildren<SpriteRenderer>().color = tempColor;
-
-        FlyingAvailability.transform.localScale = new Vector3(PickedTower.Size.x, PickedTower.Size.y, 0);
-        FlyingAvailability.transform.position = FlyingTower.transform.position;
-
-        var spriteRenderer = FlyingAvailability.GetComponentInChildren<SpriteRenderer>();
-
-        spriteRenderer.color = available ? availableColor : unavailableColor;
-    }
-
-    private void DestroyPreTower()
-    {
-        if (FlyingTower == null) return;
-
-        Destroy(FlyingTower.gameObject);
-        FlyingTower = null;
-        Destroy(FlyingAvailability);
-        FlyingAvailability = null;
+        tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
     }
 }
