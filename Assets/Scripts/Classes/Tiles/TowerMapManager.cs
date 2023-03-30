@@ -97,6 +97,6 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
     private void HideTilemap()
     {
-        tilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+        tilemap.GetComponent<TilemapRenderer>().enabled = false;
     }
 }
