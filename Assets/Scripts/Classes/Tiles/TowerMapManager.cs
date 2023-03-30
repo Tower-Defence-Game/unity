@@ -58,29 +58,28 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
     private bool IsTileForTower(Vector3Int tilePosition)
     {
-        var result = true;
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
         {
-            result = result && tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) != null;
-            if (!result) break;
+            if (tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) == null)
+            {
+                return false;
+            }
         }
 
-        return result;
+        return true;
     }
 
     private bool IsTowerStand(Vector3Int tilePosition)
     {
-        var result = false;
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
         {
             TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out var tower);
-            result = result || tower != null;
-            if (result) break;
+            if (tower != null) return true;
         }
 
-        return result;
+        return false;
     }
 
     private bool IsTileAvailable(Vector3Int tilePosition)
