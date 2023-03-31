@@ -8376,9 +8376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 893518501}
-  aviableColor: {r: 0, g: 1, b: 0, a: 0.5019608}
-  unaviableColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  aviability: {fileID: 1539210188621819103, guid: 5b25d170505bf1a4f958bba2082f38ae, type: 3}
+  availableColor: {r: 0, g: 1, b: 0, a: 0.49803922}
+  unavailableColor: {r: 1, g: 0, b: 0, a: 0.49803922}
+  availability: {fileID: 1539210188621819103, guid: 5b25d170505bf1a4f958bba2082f38ae, type: 3}
+  flyingTowerAlpha: 0.85
 --- !u!4 &937095207
 Transform:
   m_ObjectHideFlags: 0
