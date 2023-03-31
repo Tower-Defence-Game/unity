@@ -8375,12 +8375,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fc8cef637c4ea4b8c3a5b377ddd4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 893518501}
   towerMapDrawer:
     availableColor: {r: 0, g: 1, b: 0, a: 0.5}
     unavailableColor: {r: 1, g: 0, b: 0, a: 0.5}
     availability: {fileID: 1539210188621819103, guid: 5b25d170505bf1a4f958bba2082f38ae, type: 3}
     flyingTowerAlpha: 0.85
+  towerMapStander:
+    tilemap: {fileID: 893518501}
 --- !u!4 &937095207
 Transform:
   m_ObjectHideFlags: 0
