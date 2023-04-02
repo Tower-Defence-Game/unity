@@ -6,6 +6,9 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 {
     [SerializeField] private TowerMapDrawer towerMapDrawer;
     [SerializeField] private TowerMapStander towerMapStander;
+    [SerializeField] private List<TowerWithCount> towers;
+    [SerializeField] private GameObject content;
+    [SerializeField] private GameObject itemPrefab;
     private bool AfterStartDone { get; set; }
 
     private void Update()
@@ -19,12 +22,13 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             AfterStartDone = true;
             return;
         }
-
+        
         var globalMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (towerMapStander.PickedTower == null)
         {
             if(towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
+            content.SetActive(true);
             
             if (!Input.GetMouseButtonDown(0)) return;
             var tilePosition = towerMapStander.GetTilePosition(globalMousePosition);
@@ -39,6 +43,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             return;
         }
 
+        content.SetActive(false);
 
         towerMapStander.UpdatePosition(globalMousePosition);
 
