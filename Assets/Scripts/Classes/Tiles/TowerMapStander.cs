@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
@@ -14,15 +15,17 @@ public class TowerMapStander
     public Tilemap Tilemap => tilemap;
     public BaseTower PickedTower { get; set; }
     public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
-    public Vector3 CenteringVector => new(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
+    public Vector3 CenteringVector => PickedTower == null ? 
+        Vector3.zero : new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
+
     public Vector3Int SelectedPosition { get; set; }
 
     public void UpdatePosition(Vector3 globalMousePosition)
     {
-        SelectedPosition = GetSelectedPosition(globalMousePosition);
+        SelectedPosition = GetTilePosition(globalMousePosition);
     }
 
-    public Vector3Int GetSelectedPosition(Vector3 globalMousePosition)
+    public Vector3Int GetTilePosition(Vector3 globalMousePosition)
     {
         Vector2 mousePosition = globalMousePosition - CenteringVector;
         return tilemap.WorldToCell(mousePosition);
@@ -53,11 +56,32 @@ public class TowerMapStander
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
         {
-            TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out var tower);
-            if (tower != null) return true;
+            if (GetTower(tilePosition + new Vector3Int(x, y, 0)) != null) return true;
         }
 
         return false;
+    }
+    
+    public BaseTower GetTower(Vector3Int tilePosition)
+    {
+        TowerStands.TryGetValue(tilePosition, out var tower);
+        return tower;
+    }
+
+    public void DeleteTowerStandings(BaseTower towerToDelete)
+    {
+        foreach (var tower in 
+                 TowerStands.Where(x => x.Value == towerToDelete).ToList())
+        {
+            TowerStands.Remove(tower.Key);
+        }
+    }
+
+    public void DeleteTower(ref BaseTower towerToDelete)
+    {
+        DeleteTowerStandings(towerToDelete);
+        Object.Destroy(towerToDelete);
+        towerToDelete = null;
     }
 
     public bool IsTileAvailable()
@@ -78,9 +102,12 @@ public class TowerMapStander
     public void PutTower(BaseTower tower, Vector3Int tilePosition)
     {
         TowerStands[tilePosition] = Object.Instantiate(tower, GetTowerCoords(tilePosition), Quaternion.identity);
+        TowerStands[tilePosition].SetAlpha(1.0f);
+        
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
             TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
+        PickedTower = null;
     }
 
 

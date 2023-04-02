@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Interfaces.ObjectProperties;
 using UnityEngine;
 
@@ -19,13 +20,26 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             return;
         }
 
+        var globalMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (towerMapStander.PickedTower == null)
         {
-            towerMapDrawer.DestroyPreTower();
+            if(towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
+            
+            if (!Input.GetMouseButtonDown(0)) return;
+            var tilePosition = towerMapStander.GetTilePosition(globalMousePosition);
+            var tower = towerMapStander.GetTower(tilePosition);
+
+            if (tower == null) return;
+            
+            towerMapStander.DeleteTowerStandings(tower);
+            towerMapStander.PickedTower = tower;
+            towerMapDrawer.FlyingTower = tower;
+
             return;
         }
 
-        var globalMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         towerMapStander.UpdatePosition(globalMousePosition);
 
         var available = towerMapStander.IsTileAvailable();
