@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Interfaces.ObjectProperties;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class TowerMapManager : MonoBehaviour, IHavePreStart
 {
@@ -8,8 +11,15 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     [SerializeField] private TowerMapStander towerMapStander;
     [SerializeField] private List<TowerWithCount> towers;
     [SerializeField] private GameObject content;
+    [SerializeField] private GameObject hideWhenPlacing;
     [SerializeField] private GameObject itemPrefab;
     private bool AfterStartDone { get; set; }
+    private bool AreaHided { get; set; }
+
+    private void Start()
+    {
+        FillContentUiByTowers();
+    }
 
     private void Update()
     {
@@ -28,9 +38,10 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         if (towerMapStander.PickedTower == null)
         {
             if(towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
-            content.SetActive(true);
+
+            HideArea();
             
-            if (!Input.GetMouseButtonDown(0)) return;
+            if (!IsMouseClicked()) return;
             var tilePosition = towerMapStander.GetTilePosition(globalMousePosition);
             var tower = towerMapStander.GetTower(tilePosition);
 
@@ -43,14 +54,14 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
             return;
         }
 
-        content.SetActive(false);
+        ShowArea();
 
         towerMapStander.UpdatePosition(globalMousePosition);
 
         var available = towerMapStander.IsTileAvailable();
         towerMapDrawer.DrawPreTower(towerMapStander.GetTowerCoords(), available, towerMapStander.PickedTower);
 
-        if (Input.GetMouseButtonDown(0) && available) towerMapStander.PutTower();
+        if (IsMouseClicked() && available) towerMapStander.PutTower();
     }
 
     public bool IsLevelStarted { get; set; } = false;
@@ -59,5 +70,47 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     {
         if (towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
         towerMapStander.PickedTower = towerPrefab;
+    }
+
+    private void HideArea()
+    {
+        if (AreaHided) return;
+        
+        hideWhenPlacing.SetActive(true);
+        AreaHided = true;
+    }
+
+    private void ShowArea()
+    {
+        if (!AreaHided) return;
+        
+        hideWhenPlacing.SetActive(false);
+        AreaHided = false;
+    }
+
+    private bool IsMouseClicked()
+    {
+        return Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void FillContentUiByTowers()
+    {
+        foreach (var towerWithCount in towers)
+        {
+            var tower = towerWithCount.Tower;
+            var cell = Instantiate(itemPrefab, content.transform);
+            
+            var image = cell.GetComponent<Image>();
+            var spriteRenderer = tower.GetComponentInChildren<SpriteRenderer>();
+            image.sprite = spriteRenderer.sprite;
+            image.color = spriteRenderer.color;
+            
+            cell.transform.SetParent(content.transform, false);
+            
+            cell.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                StartPlacing(tower);
+            });
+        }
     }
 }

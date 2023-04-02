@@ -3,12 +3,14 @@ using Interfaces.ObjectProperties;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(IHavePreStart))]
 public class StartManager : MonoBehaviour
 {
     [SerializeField] private Button startButton;
+    [SerializeField] private List<GameObject> objectsToHideAfterStart;
     public Button StartButton => startButton;
 
     void Start()
@@ -32,7 +34,10 @@ public class StartManager : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        // Hides the button
         startButton.gameObject.SetActive(false);
+        foreach (var obj in objectsToHideAfterStart)
+        {
+            obj.SetActive(false);
+        }
     }
 }
