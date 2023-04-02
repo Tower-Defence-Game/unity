@@ -9,8 +9,20 @@ public class TowerMapDrawer
     [SerializeField] private Color unavailableColor = new(1f, 0f, 0f, 0.5f);
     [SerializeField] private GameObject availability;
     [SerializeField] private float flyingTowerAlpha;
+    private BaseTower _flyingTower;
 
-    public BaseTower FlyingTower { get; set; }
+    public BaseTower FlyingTower
+    {
+        get => _flyingTower;
+        set
+        {
+            _flyingTower = value;
+            if (_flyingTower == null) return;
+
+            _flyingTower.SetAlpha(flyingTowerAlpha);
+        }
+    }
+
     public GameObject FlyingAvailability { get; set; }
 
     public TowerMapDrawer(GameObject availability, float flyingTowerAlpha, BaseTower flyingTower, GameObject flyingAvailability)
@@ -26,11 +38,11 @@ public class TowerMapDrawer
         if (FlyingTower == null)
         {
             FlyingTower = Object.Instantiate(pickedTower);
+        }
+
+        if (FlyingAvailability == null)
+        {
             FlyingAvailability = Object.Instantiate(availability);
-        
-            var tempColor = FlyingTower.GetComponentInChildren<SpriteRenderer>().color;
-            tempColor.a = flyingTowerAlpha;
-            FlyingTower.GetComponentInChildren<SpriteRenderer>().color = tempColor;
         }
 
         Transform towerTransform;
@@ -45,11 +57,16 @@ public class TowerMapDrawer
     
     public void DestroyPreTower()
     {
-        if (FlyingTower == null) return;
-
-        Object.Destroy(FlyingTower.gameObject);
-        FlyingTower = null;
-        Object.Destroy(FlyingAvailability);
-        FlyingAvailability = null;
+        if (FlyingTower != null)
+        {
+            Object.Destroy(FlyingTower.gameObject);
+            FlyingTower = null;
+        }
+        
+        if (FlyingAvailability != null)
+        {
+            Object.Destroy(FlyingAvailability);
+            FlyingAvailability = null;
+        }
     }
 }
