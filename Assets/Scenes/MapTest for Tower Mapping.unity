@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 172420163}
   - component: {fileID: 172420162}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Destroy Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +716,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.0078125, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.015873015, y: 0.007936537, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -6206,7 +6206,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.007936537, y: 0.007936537, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -8603,7 +8603,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.2578125, y: 0.828125, z: 0}
+  m_ChunkCullingBounds: {x: 0.26984125, y: 0.8492063, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -10636,8 +10636,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1780075580}
     - target: {fileID: 7100774988446351455, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: objectsToHideAfterStart.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100774988446351455, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: objectsToHideAfterStart.Array.data[0]
       value: 
       objectReference: {fileID: 674614851}
+    - target: {fileID: 7100774988446351455, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: objectsToHideAfterStart.Array.data[1]
+      value: 
+      objectReference: {fileID: 172420160}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
