@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowerMapManager : MonoBehaviour, IHavePreStart
+public class TowerMapManager : MonoBehaviour
 {
     [SerializeField] private TowerMapDrawer towerMapDrawer;
     [SerializeField] private TowerMapStander towerMapStander;
@@ -25,14 +25,6 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     private void Update()
     {
         if (AfterStartDone) return;
-
-        if (IsLevelStarted)
-        {
-            towerMapStander.HideTilemap();
-            towerMapDrawer.DestroyPreTower();
-            AfterStartDone = true;
-            return;
-        }
 
         var globalMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -54,8 +46,13 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
         if (IsMouseClicked() && available) PutTower();
     }
-
-    public bool IsLevelStarted { get; set; } = false;
+    
+    public void OnStart()
+    {
+        towerMapStander.HideTilemap();
+        towerMapDrawer.DestroyPreTower();
+        AfterStartDone = true;
+    }
 
     public void StartPlacing(BaseTower tower)
     {
