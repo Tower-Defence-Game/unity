@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Interfaces.ObjectProperties;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TowerMapManager : MonoBehaviour, IHavePreStart
@@ -98,17 +98,28 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         foreach (var towerWithCount in towers)
         {
             var tower = towerWithCount.Tower;
+            
             var cell = Instantiate(itemPrefab, content.transform);
             
             var image = cell.GetComponent<Image>();
             var spriteRenderer = tower.GetComponentInChildren<SpriteRenderer>();
             image.sprite = spriteRenderer.sprite;
             image.color = spriteRenderer.color;
+
+            var text = cell.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = towerWithCount.Count.ToString();
             
             cell.transform.SetParent(content.transform, false);
-            
+
             cell.GetComponent<Button>().onClick.AddListener(() =>
             {
+                if (towerWithCount.Count <= 0) return;
+                
+                towerWithCount.Count--;
+                if (towerWithCount.Count <= 0) cell.GetComponent<Button>().interactable = false;
+                
+                text.text = towerWithCount.Count.ToString();
+                
                 StartPlacing(tower);
             });
         }
