@@ -15,6 +15,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
     [SerializeField] private GameObject itemPrefab;
     private bool AfterStartDone { get; set; }
     private bool AreaHided { get; set; }
+    private Dictionary<BaseTower, GameObject> _towerCountText = new();
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
         if (towerMapStander.PickedTower == null)
         {
-            if(towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
+            towerMapDrawer.DestroyPreTower();
 
             HideArea();
             
@@ -61,15 +62,30 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
         var available = towerMapStander.IsTileAvailable();
         towerMapDrawer.DrawPreTower(towerMapStander.GetTowerCoords(), available, towerMapStander.PickedTower);
 
-        if (IsMouseClicked() && available) towerMapStander.PutTower();
+        if (IsMouseClicked() && available)
+        {
+            towerMapStander.PutTower(towerMapDrawer.FlyingTower);
+            towerMapDrawer.FlyingTower = null;
+        }
     }
 
     public bool IsLevelStarted { get; set; } = false;
 
-    public void StartPlacing(BaseTower towerPrefab)
+    public void StartPlacing(BaseTower tower)
     {
         if (towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
-        towerMapStander.PickedTower = towerPrefab;
+        towerMapStander.PickedTower = tower;
+    }
+
+    public void DestroyPickedTower()
+    {
+        var cell = _towerCountText[towerMapStander.PickedTower];
+        var countText = cell.GetComponentInChildren<TextMeshProUGUI>();
+        countText.text = (int.Parse(countText.text) + 1).ToString();
+        cell.GetComponent<Button>().interactable = true;
+
+        towerMapDrawer.DestroyPreTower();
+        towerMapStander.PickedTower = null;
     }
 
     private void HideArea()
@@ -113,14 +129,17 @@ public class TowerMapManager : MonoBehaviour, IHavePreStart
 
             cell.GetComponent<Button>().onClick.AddListener(() =>
             {
-                if (towerWithCount.Count <= 0) return;
+                var count = int.Parse(text.text);
+                if (count <= 0) return;
                 
-                towerWithCount.Count--;
-                if (towerWithCount.Count <= 0) cell.GetComponent<Button>().interactable = false;
+                count--;
+                if (count <= 0) cell.GetComponent<Button>().interactable = false;
                 
-                text.text = towerWithCount.Count.ToString();
-                
-                StartPlacing(tower);
+                text.text = count.ToString();
+
+                var towerObject = Instantiate(tower);
+                _towerCountText[towerObject] = cell;
+                StartPlacing(towerObject);
             });
         }
     }

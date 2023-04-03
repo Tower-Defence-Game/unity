@@ -99,9 +99,15 @@ public class TowerMapStander
         PutTower(PickedTower, SelectedPosition);
     }
 
+    public void PutTower(BaseTower tower)
+    {
+        PutTower(tower, SelectedPosition);
+    }
+
     public void PutTower(BaseTower tower, Vector3Int tilePosition)
     {
-        TowerStands[tilePosition] = Object.Instantiate(tower, GetTowerCoords(tilePosition), Quaternion.identity);
+        tower.transform.position = GetTowerCoords(tilePosition);
+        TowerStands[tilePosition] = tower;
         TowerStands[tilePosition].SetAlpha(1.0f);
         
         for (var x = 0; x < PickedTower.Size.x; x++)

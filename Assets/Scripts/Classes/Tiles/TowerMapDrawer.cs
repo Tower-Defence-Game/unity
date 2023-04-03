@@ -37,7 +37,7 @@ public class TowerMapDrawer
     {
         if (FlyingTower == null)
         {
-            FlyingTower = Object.Instantiate(pickedTower);
+            FlyingTower = pickedTower;
         }
 
         if (FlyingAvailability == null)
