@@ -15,8 +15,10 @@ public class TowerMapStander
     public Tilemap Tilemap => tilemap;
     public BaseTower PickedTower { get; set; }
     public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
-    public Vector3 CenteringVector => PickedTower == null ? 
-        Vector3.zero : new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
+
+    public Vector3 CenteringVector => PickedTower == null
+        ? Vector3.zero
+        : new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
 
     public Vector3Int SelectedPosition { get; set; }
 
@@ -55,13 +57,12 @@ public class TowerMapStander
     {
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
-        {
-            if (GetTower(tilePosition + new Vector3Int(x, y, 0)) != null) return true;
-        }
+            if (GetTower(tilePosition + new Vector3Int(x, y, 0)) != null)
+                return true;
 
         return false;
     }
-    
+
     public BaseTower GetTower(Vector3Int tilePosition)
     {
         TowerStands.TryGetValue(tilePosition, out var tower);
@@ -70,11 +71,9 @@ public class TowerMapStander
 
     public void DeleteTowerStandings(BaseTower towerToDelete)
     {
-        foreach (var tower in 
+        foreach (var tower in
                  TowerStands.Where(x => x.Value == towerToDelete).ToList())
-        {
             TowerStands.Remove(tower.Key);
-        }
     }
 
     public void DeleteTower(ref BaseTower towerToDelete)
@@ -109,7 +108,7 @@ public class TowerMapStander
         tower.transform.position = GetTowerCoords(tilePosition);
         TowerStands[tilePosition] = tower;
         TowerStands[tilePosition].SetAlpha(1.0f);
-        
+
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
             TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
