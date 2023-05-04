@@ -1,102 +1,147 @@
 using System.Collections.Generic;
 using Interfaces.ObjectProperties;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class TowerMapManager : MonoBehaviour, IHavePreStart
+public class TowerMapManager : MonoBehaviour
 {
-    // Tilemap, где есть только тайлы, на которые можно ставить башни
-    [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")] [SerializeField]
-    private Tilemap tilemap;
     [SerializeField] private TowerMapDrawer towerMapDrawer;
-    public Tilemap Tilemap => tilemap;
-    public BaseTower PickedTower { get; set; }
-    public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
-    public Vector3 CenteringVector => new(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
-    public bool AfterStartDone { get; set; }
+    [SerializeField] private TowerMapStander towerMapStander;
+    [SerializeField] private List<TowerWithCount> towers;
+    [SerializeField] private GameObject content;
+    [SerializeField] private GameObject hideWhenPlacing;
+    [SerializeField] private GameObject itemPrefab;
+    private readonly Dictionary<BaseTower, GameObject> _towerCountText = new();
+    private bool AfterStartDone { get; set; }
+    private bool AreaHided { get; set; }
+
+    private void Start()
+    {
+        FillContentUiByTowers();
+    }
 
     private void Update()
     {
         if (AfterStartDone) return;
 
-        if (IsLevelStarted)
+        var globalMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (towerMapStander.PickedTower == null)
         {
-            HideTilemap();
-            AfterStartDone = true;
             towerMapDrawer.DestroyPreTower();
+            HideArea();
+
+            if (IsMouseClicked()) EditTower(globalMousePosition);
             return;
         }
 
-        if (PickedTower == null)
-        {
-            towerMapDrawer.DestroyPreTower();
-            return;
-        }
+        ShowArea();
 
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - CenteringVector;
+        towerMapStander.UpdatePosition(globalMousePosition);
+        var available = towerMapStander.IsTileAvailable();
 
-        var selectedPosition = tilemap.WorldToCell(mousePosition);
+        towerMapDrawer.DrawPreTower(towerMapStander.GetTowerCoords(), available, towerMapStander.PickedTower);
 
-        var available = IsTileAvailable(selectedPosition);
-        towerMapDrawer.DrawPreTower(GetTowerCoords(selectedPosition), available, PickedTower);
-
-        if (Input.GetMouseButtonDown(0) && available) PutTower(PickedTower, selectedPosition);
+        if (IsMouseClicked() && available) PutTower();
+    }
+    
+    public void OnStart()
+    {
+        towerMapStander.HideTilemap();
+        towerMapDrawer.DestroyPreTower();
+        AfterStartDone = true;
     }
 
-    public bool IsLevelStarted { get; set; } = false;
-
-    public void StartPlacing(BaseTower towerPrefab)
+    public void StartPlacing(BaseTower tower)
     {
         if (towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
-        PickedTower = towerPrefab;
+        towerMapStander.PickedTower = tower;
     }
 
-    private Vector3 GetTowerCoords(Vector3Int tilePosition)
+    public void DestroyPickedTower()
     {
-        return tilemap.GetCellCenterWorld(tilePosition) + CenteringVector;
+        var cell = _towerCountText[towerMapStander.PickedTower];
+        var countText = cell.GetComponentInChildren<TextMeshProUGUI>();
+        countText.text = (int.Parse(countText.text) + 1).ToString();
+        cell.GetComponent<Button>().interactable = true;
+
+        towerMapDrawer.DestroyPreTower();
+        towerMapStander.PickedTower = null;
     }
 
-    private bool IsTileForTower(Vector3Int tilePosition)
+    public void EditTower(Vector3 globalMousePosition)
     {
-        for (var x = 0; x < PickedTower.Size.x; x++)
-        for (var y = 0; y < PickedTower.Size.y; y++)
+        var tilePosition = towerMapStander.GetTilePosition(globalMousePosition);
+        var tower = towerMapStander.GetTower(tilePosition);
+
+        if (tower == null) return;
+
+        towerMapStander.DeleteTowerStandings(tower);
+        towerMapStander.PickedTower = tower;
+        towerMapDrawer.FlyingTower = tower;
+    }
+
+    private void HideArea()
+    {
+        if (AreaHided) return;
+
+        hideWhenPlacing.SetActive(true);
+        AreaHided = true;
+    }
+
+    private void ShowArea()
+    {
+        if (!AreaHided) return;
+
+        hideWhenPlacing.SetActive(false);
+        AreaHided = false;
+    }
+
+    private void PutTower()
+    {
+        towerMapStander.PutTower(towerMapDrawer.FlyingTower);
+        towerMapDrawer.FlyingTower = null;
+    }
+
+    private bool IsMouseClicked()
+    {
+        return Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void FillContentUiByTowers()
+    {
+        foreach (var towerWithCount in towers)
         {
-            if (tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) == null)
+            var tower = towerWithCount.Tower;
+
+            var cell = Instantiate(itemPrefab, content.transform);
+
+            var image = cell.GetComponent<Image>();
+            var spriteRenderer = tower.GetComponentInChildren<SpriteRenderer>();
+            image.sprite = spriteRenderer.sprite;
+            image.color = spriteRenderer.color;
+
+            var countText = cell.GetComponentInChildren<TextMeshProUGUI>();
+            countText.text = towerWithCount.Count.ToString();
+
+            cell.transform.SetParent(content.transform, false);
+
+            cell.GetComponent<Button>().onClick.AddListener(() =>
             {
-                return false;
-            }
+                var count = int.Parse(countText.text);
+                if (count <= 0) return;
+
+                count--;
+                if (count <= 0) cell.GetComponent<Button>().interactable = false;
+
+                countText.text = count.ToString();
+
+                var towerObject = Instantiate(tower);
+                _towerCountText[towerObject] = cell;
+                StartPlacing(towerObject);
+            });
         }
-
-        return true;
-    }
-
-    private bool IsTowerStand(Vector3Int tilePosition)
-    {
-        for (var x = 0; x < PickedTower.Size.x; x++)
-        for (var y = 0; y < PickedTower.Size.y; y++)
-        {
-            TowerStands.TryGetValue(tilePosition + new Vector3Int(x, y, 0), out var tower);
-            if (tower != null) return true;
-        }
-
-        return false;
-    }
-
-    private bool IsTileAvailable(Vector3Int tilePosition)
-    {
-        return IsTileForTower(tilePosition) && !IsTowerStand(tilePosition);
-    }
-
-    private void PutTower(BaseTower tower, Vector3Int tilePosition)
-    {
-        TowerStands[tilePosition] = Instantiate(tower, GetTowerCoords(tilePosition), Quaternion.identity);
-        for (var x = 0; x < PickedTower.Size.x; x++)
-        for (var y = 0; y < PickedTower.Size.y; y++)
-            TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
-    }
-
-    private void HideTilemap()
-    {
-        tilemap.GetComponent<TilemapRenderer>().enabled = false;
     }
 }

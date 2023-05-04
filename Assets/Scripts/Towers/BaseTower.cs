@@ -21,6 +21,13 @@ public class BaseTower : MonoBehaviour
     private float _cooldownTimer = 0f;
     public Vector2Int Size => size;
 
+    public void SetAlpha(float alpha)
+    {
+        var tempColor = GetComponentInChildren<SpriteRenderer>().color;
+        tempColor.a = alpha;
+        GetComponentInChildren<SpriteRenderer>().color = tempColor;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0f, 1f, 0f, 0.3f);

@@ -1,14 +1,19 @@
+using System;
 using Interfaces.ObjectAbilities;
 using Interfaces.ObjectProperties;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(IHavePreStart))]
 public class StartManager : MonoBehaviour
 {
     [SerializeField] private Button startButton;
+    [SerializeField] private List<GameObject> objectsToHideAfterStart;
+    [SerializeField] private UnityEvent onStart;
     public Button StartButton => startButton;
 
     void Start()
@@ -28,11 +33,13 @@ public class StartManager : MonoBehaviour
 
     void StartGame()
     {
-        GetComponent<IHavePreStart>().IsLevelStarted = true;
-
         Time.timeScale = 1f;
 
-        // Hides the button
+        onStart?.Invoke();
         startButton.gameObject.SetActive(false);
+        foreach (var obj in objectsToHideAfterStart)
+        {
+            obj.SetActive(false);
+        }
     }
 }
