@@ -1,0 +1,1003 @@
+fileFormatVersion: 2
+guid: 6d23a3642d893e94db68afd04b4f6318
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skeleton
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 230
+        width: 23
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6296381, y: 0.8825464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c985c0fd6928a440b16af6e75e50d28
+      internalID: 52747263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 230
+        width: 27
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6136126, y: 0.8834424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abfc6b3a00e532a40a990eb420930238
+      internalID: -1680978592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 230
+        width: 28
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5912958, y: 0.88077974}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142a05bfd189c284abfab52c24013532
+      internalID: 1911874656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 230
+        width: 28
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5912958, y: 0.88077974}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab39e24b7794ce34b9f87b0e4692cc78
+      internalID: -2089169674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_4
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 230
+        width: 22
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6084484, y: 0.88077974}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b3f06c82f973994ea0cd4915321fe7a
+      internalID: -1056544524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_5
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 229
+        width: 19
+        height: 65
+      alignment: 9
+      pivot: {x: 0.59866333, y: 0.8854088}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb7bc45de7ad6f54eab84b0a30d0e84e
+      internalID: 1319273112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_6
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 229
+        width: 20
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5255615, y: 0.8854084}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0466de61c61e853408c8c9f3d64a76e9
+      internalID: -1532977183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_7
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 229
+        width: 21
+        height: 65
+      alignment: 9
+      pivot: {x: 0.49999854, y: 0.8854088}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f49c6538365cd540ae70bfc8b9ba301
+      internalID: 1232868137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_8
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 230
+        width: 24
+        height: 64
+      alignment: 9
+      pivot: {x: 0.47159576, y: 0.8834419}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277622b8c80cc934593ca1284e46c960
+      internalID: 992855355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_9
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 230
+        width: 18
+        height: 64
+      alignment: 9
+      pivot: {x: 0.57574123, y: 0.8834424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b942a6b3646a94a90cd4f3df97307f
+      internalID: -1282268034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 155
+        width: 23
+        height: 64
+      alignment: 9
+      pivot: {x: 0.48954082, y: 0.91722155}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f85b42966549a740a3b3d40b401956c
+      internalID: 1523060397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 155
+        width: 27
+        height: 64
+      alignment: 9
+      pivot: {x: 0.49999973, y: 0.9209802}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d5ee92c6b42fa4ab7294c1addd9191
+      internalID: -495758275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_12
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 155
+        width: 28
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5257743, y: 0.91722155}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da05c048bcaeaad4b9921c2325307648
+      internalID: 2081002719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_13
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 155
+        width: 28
+        height: 64
+      alignment: 9
+      pivot: {x: 0.51718247, y: 0.9247389}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b3e259591745b43859ec7cdc344ed0
+      internalID: -1365882265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_14
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 155
+        width: 22
+        height: 64
+      alignment: 9
+      pivot: {x: 0.52186865, y: 0.9209802}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed5814c45f661c4285ee04a9c200195
+      internalID: 1232930143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_15
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 154
+        width: 19
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5633047, y: 0.92560637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7dad1aa5ea8f9d4fa318fcbd6acff0b
+      internalID: -1444366166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_16
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 154
+        width: 20
+        height: 65
+      alignment: 9
+      pivot: {x: 0.6323074, y: 0.92560637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67e6a8bed49db84da012eca1b056eb7
+      internalID: -1455280683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_17
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 154
+        width: 21
+        height: 65
+      alignment: 9
+      pivot: {x: 0.6603728, y: 0.9219055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0efb5e866ab04de449780b61c2be141e
+      internalID: -1571082498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_18
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 155
+        width: 24
+        height: 64
+      alignment: 9
+      pivot: {x: 0.66037303, y: 0.9209802}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d8572012c80fd4e9fb17ce185cc285
+      internalID: -1889365598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_19
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 155
+        width: 18
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2c3a0279b05f0448ae95000599abb3
+      internalID: 651977675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 79
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.8833928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9af3ebf60e8c9a4a84fbeedcf40bcb1
+      internalID: -1158723586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_21
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 79
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5141505, y: 0.8871517}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24144028515c4694c83d7cacd209db21
+      internalID: 203576942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_22
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 79
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.528301, y: 0.8833928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a94e56812e63622429410888f793d6af
+      internalID: -985945851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 17
+        height: 63
+      alignment: 9
+      pivot: {x: 0.4858488, y: 0.8780232}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd624eea08b21c40832e9c9bbf4ce13
+      internalID: -1050217636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_24
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 79
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.51414937, y: 0.8833928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dcd3e9bfd646cf4b8957016a182ee1b
+      internalID: 2111061127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_25
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 80
+        width: 17
+        height: 63
+      alignment: 9
+      pivot: {x: 0.4999991, y: 0.8742049}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3564af885b026704ba67e2657c8154fb
+      internalID: 2107043258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_26
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 80
+        width: 17
+        height: 63
+      alignment: 9
+      pivot: {x: 0.4999991, y: 0.8818418}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a5b3db53ae1c1446b6511ef2ea7e3d6
+      internalID: 211737383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_27
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 80
+        width: 17
+        height: 63
+      alignment: 9
+      pivot: {x: 0.51415026, y: 0.8780232}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb9dc6632aa29d4f8892175b5bd1eae
+      internalID: 1996792497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_28
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 82
+        width: 17
+        height: 61
+      alignment: 9
+      pivot: {x: 0.51415026, y: 0.8746428}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ba7c829e3c3934c8814765c1b99e1c
+      internalID: 1549463476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_29
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 80
+        width: 17
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5141476, y: 0.8780232}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d151bff013834b44193118a8b0cd8964
+      internalID: -1990725906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_30
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 4
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.4858495, y: 0.88715166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b6dac3949830e4eaf4fcc943c4c061
+      internalID: -20852528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_31
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.47169852, y: 0.8922982}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6d6d6f9803fce4fa1bc1ac430f6da8
+      internalID: 1395220941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_32
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.89970005}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f554dcc8a338aa341829b136bac4dec8
+      internalID: -614852113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4858488, y: 0.8922982}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f992cad17021240a02a885ecca08fc
+      internalID: 28228535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_34
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 4
+        width: 17
+        height: 64
+      alignment: 9
+      pivot: {x: 0.4858488, y: 0.8909104}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313ef859729e3ee4495aa38fdb35800d
+      internalID: -384377079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_35
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4999991, y: 0.89970005}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07bf863374f82cd46a0a28c0d15541dd
+      internalID: -944099500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_36
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4999991, y: 0.8885973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02a914e2860bc949ba11269aebd2710
+      internalID: 2057489524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_37
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4858488, y: 0.8885973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 211cdfbd57bbf5b4e88f5007738e395a
+      internalID: 727160270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_38
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8885973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f20c0dfe1b6cc6c4299b749e21a3b52c
+      internalID: 408142666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton animation_39
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 3
+        width: 17
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4999982, y: 0.89599913}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cffd01c1515392d4fb5b46192b0a4f7f
+      internalID: 517824064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Skeleton: 52747263
+      skeleton animation_1: -1680978592
+      skeleton animation_10: 1523060397
+      skeleton animation_11: -495758275
+      skeleton animation_12: 2081002719
+      skeleton animation_13: -1365882265
+      skeleton animation_14: 1232930143
+      skeleton animation_15: -1444366166
+      skeleton animation_16: -1455280683
+      skeleton animation_17: -1571082498
+      skeleton animation_18: -1889365598
+      skeleton animation_19: 651977675
+      skeleton animation_2: 1911874656
+      skeleton animation_20: -1158723586
+      skeleton animation_21: 203576942
+      skeleton animation_22: -985945851
+      skeleton animation_23: -1050217636
+      skeleton animation_24: 2111061127
+      skeleton animation_25: 2107043258
+      skeleton animation_26: 211737383
+      skeleton animation_27: 1996792497
+      skeleton animation_28: 1549463476
+      skeleton animation_29: -1990725906
+      skeleton animation_3: -2089169674
+      skeleton animation_30: -20852528
+      skeleton animation_31: 1395220941
+      skeleton animation_32: -614852113
+      skeleton animation_33: 28228535
+      skeleton animation_34: -384377079
+      skeleton animation_35: -944099500
+      skeleton animation_36: 2057489524
+      skeleton animation_37: 727160270
+      skeleton animation_38: 408142666
+      skeleton animation_39: 517824064
+      skeleton animation_4: -1056544524
+      skeleton animation_5: 1319273112
+      skeleton animation_6: -1532977183
+      skeleton animation_7: 1232868137
+      skeleton animation_8: 992855355
+      skeleton animation_9: -1282268034
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
