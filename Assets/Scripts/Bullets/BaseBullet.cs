@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BaseBullet : MonoBehaviour, IBullet
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] protected float speed = 5f;
 
     public Damage Damage { get; private set; }
     public Enemy Target { get; private set; }
 
-    private object _origin;
+    protected object Origin;
+    private Vector3 _direction;
 
     public void Init(object origin, Damage damage, Enemy target)
     {
-        _origin = origin;
+        Origin = origin;
         Damage = damage;
         Target = target;
     }
@@ -28,9 +29,9 @@ public class BaseBullet : MonoBehaviour, IBullet
 
         var position = transform.position;
         var targetPosition = Target.Position;
-        Vector3 direction = position - targetPosition;
+        _direction = position - targetPosition;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // move bullet towards the enemy
@@ -38,10 +39,29 @@ public class BaseBullet : MonoBehaviour, IBullet
         transform.position = position;
 
         // check if bullet reached the enemy
-        if (position == targetPosition)
+        if (IsGiveDamage(position, targetPosition))
         {
-            Target.TakeDamage(_origin, Damage);
+            GiveDamage();
+        }
+
+        if (IsDestroy(position, targetPosition))
+        {
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void GiveDamage()
+    {
+        Target.TakeDamage(Origin, Damage);
+    }
+
+    protected virtual bool IsGiveDamage(Vector3 position, Vector3 targetPosition)
+    {
+        return position == targetPosition;
+    }
+
+    protected virtual bool IsDestroy(Vector3 position, Vector3 targetPosition)
+    {
+        return position == targetPosition;
     }
 }
