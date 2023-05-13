@@ -21,6 +21,7 @@ public class BaseTower : MonoBehaviour
 
     private float _cooldownTimer = 0f;
     private static readonly int Shooting = Animator.StringToHash("shooting");
+    private static readonly int Speed = Animator.StringToHash("speed");
     public Vector2Int Size => size;
 
     public void SetAlpha(float alpha)
@@ -49,6 +50,10 @@ public class BaseTower : MonoBehaviour
     {
         _enemyDetector = GetComponent<EnemyDetector>();
         _animator = GetComponent<Animator>();
+        
+        Debug.Assert(cooldown != 0, "Cooldown can't be 0.");
+        
+        _animator.SetFloat(Speed, 1f / cooldown);
     }
 
     // Update is called once per frame
