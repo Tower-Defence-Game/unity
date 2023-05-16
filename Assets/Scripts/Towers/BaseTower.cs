@@ -16,9 +16,13 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private Vector2Int size = Vector2Int.one;
 
     private EnemyDetector _enemyDetector;
+    private Animator _animator;
     private Enemy Enemy => _enemyDetector.TargetEnemy;
 
     private float _cooldownTimer = 0f;
+    private static readonly int Shooting = Animator.StringToHash("shooting");
+    private static readonly int Speed = Animator.StringToHash("speed");
+    private const string ShootClipName = "Shoot";
     public Vector2Int Size => size;
 
     public void SetAlpha(float alpha)
@@ -46,6 +50,18 @@ public class BaseTower : MonoBehaviour
     void Start()
     {
         _enemyDetector = GetComponent<EnemyDetector>();
+        _animator = GetComponent<Animator>();
+        
+        Debug.Assert(cooldown != 0, "Cooldown can't be 0.");
+        
+        var clips = _animator.runtimeAnimatorController.animationClips;
+        var length = 1f;
+        foreach (var clip in clips)
+        {
+            if (clip.name != ShootClipName) continue;
+            length = clip.length;
+        }
+        _animator.SetFloat(Speed, 1f / length / cooldown);
     }
 
     // Update is called once per frame
@@ -53,6 +69,7 @@ public class BaseTower : MonoBehaviour
     {
         if (Enemy == null)
         {
+            _animator.SetBool(Shooting, false);
             return;
         }
 
@@ -64,21 +81,34 @@ public class BaseTower : MonoBehaviour
 
         if (_cooldownTimer > 0)
         {
+            _animator.SetBool(Shooting, false);
             _cooldownTimer -= Time.deltaTime;
-            return;
         }
 
-        _cooldownTimer = cooldown;
-        Shoot();
+        PrepareShoot();
     }
 
+    void PrepareShoot()
+    {
+        if (_animator is not null)
+        {
+            _animator.SetBool(Shooting, true);
+        }
+        else
+        {
+            Shoot();
+        }
+    }
+
+    // Вызывается анимацией
     void Shoot()
     {
-        var bulletInstance = Instantiate(bullet, tower.position, Quaternion.identity);
+        var bulletInstance = Instantiate(bullet, turret.position, Quaternion.identity);
         var bulletScript = bulletInstance.GetComponent<IBullet>();
 
         Debug.Assert(bulletScript != null, "Bullet must implement IBullet interface!");
 
         bulletScript.Init(this, new Damage(element, damage), Enemy);
+        _cooldownTimer = cooldown;
     }
 }

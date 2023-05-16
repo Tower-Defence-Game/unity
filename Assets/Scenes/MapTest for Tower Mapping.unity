@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637948513091022351, guid: 894ee4417e9b418418d9dd755c88ab5f, type: 3}
       propertyPath: _spawnOptions.Array.data[0]._every
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4637948513091022351, guid: 894ee4417e9b418418d9dd755c88ab5f, type: 3}
       propertyPath: _spawnOptions.Array.data[0]._objectToSpawn
