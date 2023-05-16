@@ -20,6 +20,7 @@ public class TowerMapManager : MonoBehaviour
     private void Start()
     {
         FillContentUiByTowers();
+        StartManager.AddOnStart(OnStart);
     }
 
     private void Update()
