@@ -7,7 +7,7 @@ public class BaseBullet : MonoBehaviour, IBullet
     [SerializeField] protected float speed = 5f;
 
     public Damage Damage { get; private set; }
-    public Enemy Target { get; private set; }
+    protected Enemy Target { get; set; }
 
     protected object Origin;
     private Vector3 _direction;
@@ -35,16 +35,15 @@ public class BaseBullet : MonoBehaviour, IBullet
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // move bullet towards the enemy
-        position = Vector3.MoveTowards(position, targetPosition, speed * Time.fixedDeltaTime);
-        transform.position = position;
+        transform.position = Vector3.MoveTowards(position, targetPosition, speed * Time.fixedDeltaTime);
 
         // check if bullet reached the enemy
-        if (IsGiveDamage(position, targetPosition))
+        if (IsGiveDamage(transform.position, Target.Position))
         {
             GiveDamage();
         }
 
-        if (IsDestroy(position, targetPosition))
+        if (IsDestroy(transform.position, Target.Position))
         {
             Destroy(gameObject);
         }
