@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919ae1e6f98b466390454e9f547929fc, type: 3}
   m_Name: Fire Element
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 0b0cbe4860cf533418d0149fb25a55d6, type: 3}
-  color: {r: 0.8773585, g: 0.07780345, b: 0.07780345, a: 0}
+  icon: {fileID: 21300000, guid: 50138ebd3ad16f140b8bafee2da4a07a, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 0}
   description: 

@@ -99,6 +99,7 @@ MonoBehaviour:
   objectSprite: {fileID: 2810207304120192738}
   yOffset: 0.5
   xOffset: 0.1
+  scale: 2.5
   drawOwnElement: 1
 --- !u!95 &6636917300883545293
 Animator:

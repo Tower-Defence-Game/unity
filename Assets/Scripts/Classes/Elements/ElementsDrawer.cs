@@ -12,6 +12,7 @@ namespace Classes.Elements
         [SerializeField] private SpriteRenderer objectSprite;
         [SerializeField] private float yOffset = 0.5f;
         [SerializeField] private float xOffset = 0.5f;
+        [SerializeField] private float scale = 1.0f;
 
         [SerializeField] private bool drawOwnElement;
 
@@ -59,6 +60,7 @@ namespace Classes.Elements
                 var spriteRenderer = new GameObject().AddComponent<SpriteRenderer>();
                 spriteRenderer.sprite = element.Icon;
                 spriteRenderer.transform.SetParent(transform);
+                spriteRenderer.transform.localScale = Vector2.one * scale;
                 spriteRenderer.sortingOrder = objectSprite.sortingOrder;
                 _elementsSpriteRenderers.Add(new KeyValuePair<Element, SpriteRenderer>(element, spriteRenderer));
                 hasChanges = true;
