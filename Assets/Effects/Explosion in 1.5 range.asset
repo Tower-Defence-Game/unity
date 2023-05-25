@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65373c7a0a6c42b280b153f96d6e5b71, type: 3}
+  m_Name: Explosion in 1.5 range
+  m_EditorClassIdentifier: 
+  <OriginEffect>k__BackingField: {fileID: 0}
+  healthDurationEffectType: 2
+  healthModifier: -1
+  canExceedMaxHealth: 0
+  DeltaHealth: 0
+  targetingRange: 1.5
+  element: {fileID: 0}

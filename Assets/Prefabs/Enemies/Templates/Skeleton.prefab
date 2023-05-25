@@ -53,7 +53,7 @@ MonoBehaviour:
   speed: 1
   health: 100
   resistance: 1
-  element: {fileID: 11400000, guid: a8f05389e6b795b42866ffd549829f8d, type: 2}
+  element: {fileID: 0}
   elementCombinationList: {fileID: 11400000, guid: 27d605f5bdd9e6749abd1c817d16d86f, type: 2}
 --- !u!114 &5443936462827026341
 MonoBehaviour:
