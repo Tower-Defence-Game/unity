@@ -68,6 +68,7 @@ MonoBehaviour:
   tower: {fileID: 2659783132965955837}
   bullet: {fileID: 186133662666652967, guid: e1b59ca466c221a4aa32a1dc3885cc1b, type: 3}
   size: {x: 2, y: 2}
+  stars: 3
 --- !u!95 &6540375972050091032
 Animator:
   serializedVersion: 5

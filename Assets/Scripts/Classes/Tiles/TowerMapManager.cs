@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Classes.Tiles.Cell;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -18,6 +19,12 @@ public class TowerMapManager : MonoBehaviour
     
     [FormerlySerializedAs("itemPrefab")] [SerializeField] [Tooltip("Префаб ячейки для башни")]
     private GameObject cellPrefab;
+
+    [SerializeField] [Tooltip("Максимальное кол-во звёзд, которое может быть на уровне")]
+    private int maxStars = 4;
+    
+    [SerializeField] [Tooltip("Текст, где отображаются звёзды на уровне")]
+    private TextMeshProUGUI starsText;
     
     private bool AfterStartDone { get; set; }
     private bool AreaHided { get; set; }
@@ -27,7 +34,7 @@ public class TowerMapManager : MonoBehaviour
     private void Start()
     {
         // Обязательно создавать перед FillContentUiByTowers
-        _cellManager = new CellManager(cellPrefab, cellsContent, StartPlacing);
+        _cellManager = new CellManager(cellPrefab, cellsContent, StartPlacing, maxStars, starsText);
         
         FillContentUiByTowers();
         StartManager.AddOnStart(OnStart);

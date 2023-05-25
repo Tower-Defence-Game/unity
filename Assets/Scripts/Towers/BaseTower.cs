@@ -14,6 +14,7 @@ public class BaseTower : MonoBehaviour
     [SerializeField] private Transform tower = default;
     [SerializeField] private BaseBullet bullet = default;
     [SerializeField] private Vector2Int size = Vector2Int.one;
+    [SerializeField] private int stars = 1;
 
     private EnemyDetector _enemyDetector;
     private Animator _animator;
@@ -24,6 +25,7 @@ public class BaseTower : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("speed");
     private const string ShootClipName = "Shoot";
     public Vector2Int Size => size;
+    public int Stars => stars;
 
     public void SetAlpha(float alpha)
     {

@@ -455,6 +455,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &97188903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 97188903, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
+  m_PrefabInstance: {fileID: 1144468250834703853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172420160
 GameObject:
   m_ObjectHideFlags: 0
@@ -10376,10 +10387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1532937567}
     m_Modifications:
-    - target: {fileID: 1144468249464223560, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1144468249500932502, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -10471,14 +10478,6 @@ PrefabInstance:
     - target: {fileID: 1144468250160192430, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
       propertyPath: m_Name
       value: Tower List UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144468250470535486, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1144468250470535486, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
@@ -10655,9 +10654,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1370497700}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: maxStars
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: starsText
+      value: 
+      objectReference: {fileID: 97188903}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: cellPrefab
+      value: 
+      objectReference: {fileID: 5189744958393306669, guid: a3e7526212f2c304b80739972eae4fb8, type: 3}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 5189744958393306669, guid: b8b6966f9944f7147b73b557665289b2, type: 3}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: cellsContent
+      value: 
+      objectReference: {fileID: 1370497700}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: hideWhenPlacing
       value: 
@@ -10672,12 +10687,20 @@ PrefabInstance:
       objectReference: {fileID: 893518501}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: towers.Array.data[0].count
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: towers.Array.data[1].count
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: towers.Array.data[2].count
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: towerMapStander.towerTilemap
+      value: 
+      objectReference: {fileID: 893518501}
     - target: {fileID: 7100774988446351442, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: m_Name
       value: Tower Manager
