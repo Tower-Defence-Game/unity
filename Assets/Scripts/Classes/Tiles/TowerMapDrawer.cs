@@ -34,7 +34,7 @@ public class TowerMapDrawer
 
     public GameObject FlyingAvailability { get; set; }
 
-    public void DrawPreTower(Vector3 towerCoords, bool available, BaseTower pickedTower)
+    public void DrawFlyingTower(Vector3 towerCoords, bool available, BaseTower pickedTower)
     {
         if (FlyingTower == null) FlyingTower = pickedTower;
         if (FlyingAvailability == null) FlyingAvailability = Object.Instantiate(availability);
@@ -49,7 +49,7 @@ public class TowerMapDrawer
         spriteRenderer.color = available ? availableColor : unavailableColor;
     }
 
-    public void DestroyPreTower()
+    public void DestroyFlyingTower()
     {
         if (FlyingTower != null)
         {

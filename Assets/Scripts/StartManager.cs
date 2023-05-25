@@ -14,7 +14,13 @@ public class StartManager : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private List<GameObject> objectsToHideAfterStart;
     [SerializeField] private UnityEvent onStart;
+    private static readonly UnityEvent OnStartInternal = new();
     public Button StartButton => startButton;
+
+    public static void AddOnStart(UnityAction action)
+    {
+        OnStartInternal.AddListener(action);
+    }
 
     void Start()
     {
@@ -36,6 +42,7 @@ public class StartManager : MonoBehaviour
         Time.timeScale = 1f;
 
         onStart?.Invoke();
+        OnStartInternal?.Invoke();
         startButton.gameObject.SetActive(false);
         foreach (var obj in objectsToHideAfterStart)
         {

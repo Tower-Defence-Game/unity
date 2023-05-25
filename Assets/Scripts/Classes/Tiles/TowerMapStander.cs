@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 
 [Serializable]
 public class TowerMapStander
 {
-    // Tilemap, где есть только тайлы, на которые можно ставить башни
-    [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")] [SerializeField]
-    private Tilemap tilemap;
-
-    public Tilemap Tilemap => tilemap;
+    [FormerlySerializedAs("tilemap")] [Tooltip("Tilemap, где есть только тайлы, на которые можно ставить башни")] [SerializeField]
+    private Tilemap towerTilemap;
     public BaseTower PickedTower { get; set; }
-    public Dictionary<Vector3Int, BaseTower> TowerStands { get; set; } = new();
+    public Dictionary<Vector3Int, BaseTower> TowerByPosition { get; set; } = new();
 
+    // magic vector, idk how it works, but it works
     public Vector3 CenteringVector => PickedTower == null
         ? Vector3.zero
         : new Vector3(PickedTower.Size.x / 2f - 0.5f, PickedTower.Size.y / 2f - 0.5f);
@@ -30,7 +29,7 @@ public class TowerMapStander
     public Vector3Int GetTilePosition(Vector3 globalMousePosition)
     {
         Vector2 mousePosition = globalMousePosition - CenteringVector;
-        return tilemap.WorldToCell(mousePosition);
+        return towerTilemap.WorldToCell(mousePosition);
     }
 
     public Vector3 GetTowerCoords()
@@ -40,14 +39,14 @@ public class TowerMapStander
 
     public Vector3 GetTowerCoords(Vector3Int tilePosition)
     {
-        return tilemap.GetCellCenterWorld(tilePosition) + CenteringVector;
+        return towerTilemap.GetCellCenterWorld(tilePosition) + CenteringVector;
     }
 
     private bool IsTileForTower(Vector3Int tilePosition)
     {
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
-            if (tilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) == null)
+            if (towerTilemap.GetTile(tilePosition + new Vector3Int(x, y, 0)) == null)
                 return false;
 
         return true;
@@ -65,15 +64,15 @@ public class TowerMapStander
 
     public BaseTower GetTower(Vector3Int tilePosition)
     {
-        TowerStands.TryGetValue(tilePosition, out var tower);
+        TowerByPosition.TryGetValue(tilePosition, out var tower);
         return tower;
     }
 
     public void DeleteTowerStandings(BaseTower towerToDelete)
     {
         foreach (var tower in
-                 TowerStands.Where(x => x.Value == towerToDelete).ToList())
-            TowerStands.Remove(tower.Key);
+                 TowerByPosition.Where(x => x.Value == towerToDelete).ToList())
+            TowerByPosition.Remove(tower.Key);
     }
 
     public void DeleteTower(ref BaseTower towerToDelete)
@@ -106,18 +105,18 @@ public class TowerMapStander
     public void PutTower(BaseTower tower, Vector3Int tilePosition)
     {
         tower.transform.position = GetTowerCoords(tilePosition);
-        TowerStands[tilePosition] = tower;
-        TowerStands[tilePosition].SetAlpha(1.0f);
+        TowerByPosition[tilePosition] = tower;
+        TowerByPosition[tilePosition].SetAlpha(1.0f);
 
         for (var x = 0; x < PickedTower.Size.x; x++)
         for (var y = 0; y < PickedTower.Size.y; y++)
-            TowerStands[tilePosition + new Vector3Int(x, y, 0)] = TowerStands[tilePosition];
+            TowerByPosition[tilePosition + new Vector3Int(x, y, 0)] = TowerByPosition[tilePosition];
         PickedTower = null;
     }
 
 
     public void HideTilemap()
     {
-        tilemap.GetComponent<TilemapRenderer>().enabled = false;
+        towerTilemap.GetComponent<TilemapRenderer>().enabled = false;
     }
 }

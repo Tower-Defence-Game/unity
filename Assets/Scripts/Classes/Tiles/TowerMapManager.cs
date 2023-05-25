@@ -1,25 +1,36 @@
 using System.Collections.Generic;
-using Interfaces.ObjectProperties;
-using TMPro;
+using Classes.Tiles.Cell;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class TowerMapManager : MonoBehaviour
 {
     [SerializeField] private TowerMapDrawer towerMapDrawer;
     [SerializeField] private TowerMapStander towerMapStander;
     [SerializeField] private List<TowerWithCount> towers;
-    [SerializeField] private GameObject content;
-    [SerializeField] private GameObject hideWhenPlacing;
-    [SerializeField] private GameObject itemPrefab;
-    private readonly Dictionary<BaseTower, GameObject> _towerCountText = new();
+    
+    [FormerlySerializedAs("content")] [SerializeField] [Tooltip("Объект в ScrollArea")]
+    private GameObject cellsContent;
+    
+    [SerializeField] [Tooltip("Объекты, которые нужно скрывать во время выставления башен")] 
+    private GameObject hideWhenPlacing;
+    
+    [FormerlySerializedAs("itemPrefab")] [SerializeField] [Tooltip("Префаб ячейки для башни")]
+    private GameObject cellPrefab;
+    
     private bool AfterStartDone { get; set; }
     private bool AreaHided { get; set; }
 
+    private CellManager _cellManager;
+
     private void Start()
     {
+        // Обязательно создавать перед FillContentUiByTowers
+        _cellManager = new CellManager(cellPrefab, cellsContent, StartPlacing);
+        
         FillContentUiByTowers();
+        StartManager.AddOnStart(OnStart);
     }
 
     private void Update()
@@ -30,7 +41,7 @@ public class TowerMapManager : MonoBehaviour
 
         if (towerMapStander.PickedTower == null)
         {
-            towerMapDrawer.DestroyPreTower();
+            towerMapDrawer.DestroyFlyingTower();
             HideArea();
 
             if (IsMouseClicked()) EditTower(globalMousePosition);
@@ -42,7 +53,7 @@ public class TowerMapManager : MonoBehaviour
         towerMapStander.UpdatePosition(globalMousePosition);
         var available = towerMapStander.IsTileAvailable();
 
-        towerMapDrawer.DrawPreTower(towerMapStander.GetTowerCoords(), available, towerMapStander.PickedTower);
+        towerMapDrawer.DrawFlyingTower(towerMapStander.GetTowerCoords(), available, towerMapStander.PickedTower);
 
         if (IsMouseClicked() && available) PutTower();
     }
@@ -50,24 +61,21 @@ public class TowerMapManager : MonoBehaviour
     public void OnStart()
     {
         towerMapStander.HideTilemap();
-        towerMapDrawer.DestroyPreTower();
+        towerMapDrawer.DestroyFlyingTower();
         AfterStartDone = true;
     }
 
     public void StartPlacing(BaseTower tower)
     {
-        if (towerMapDrawer.FlyingTower != null) towerMapDrawer.DestroyPreTower();
+        towerMapDrawer.DestroyFlyingTower();
         towerMapStander.PickedTower = tower;
     }
 
     public void DestroyPickedTower()
     {
-        var cell = _towerCountText[towerMapStander.PickedTower];
-        var countText = cell.GetComponentInChildren<TextMeshProUGUI>();
-        countText.text = (int.Parse(countText.text) + 1).ToString();
-        cell.GetComponent<Button>().interactable = true;
+        _cellManager.AddTower(towerMapStander.PickedTower);
 
-        towerMapDrawer.DestroyPreTower();
+        towerMapDrawer.DestroyFlyingTower();
         towerMapStander.PickedTower = null;
     }
 
@@ -80,7 +88,6 @@ public class TowerMapManager : MonoBehaviour
 
         towerMapStander.DeleteTowerStandings(tower);
         towerMapStander.PickedTower = tower;
-        towerMapDrawer.FlyingTower = tower;
     }
 
     private void HideArea()
@@ -114,34 +121,7 @@ public class TowerMapManager : MonoBehaviour
     {
         foreach (var towerWithCount in towers)
         {
-            var tower = towerWithCount.Tower;
-
-            var cell = Instantiate(itemPrefab, content.transform);
-
-            var image = cell.GetComponent<Image>();
-            var spriteRenderer = tower.GetComponentInChildren<SpriteRenderer>();
-            image.sprite = spriteRenderer.sprite;
-            image.color = spriteRenderer.color;
-
-            var countText = cell.GetComponentInChildren<TextMeshProUGUI>();
-            countText.text = towerWithCount.Count.ToString();
-
-            cell.transform.SetParent(content.transform, false);
-
-            cell.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                var count = int.Parse(countText.text);
-                if (count <= 0) return;
-
-                count--;
-                if (count <= 0) cell.GetComponent<Button>().interactable = false;
-
-                countText.text = count.ToString();
-
-                var towerObject = Instantiate(tower);
-                _towerCountText[towerObject] = cell;
-                StartPlacing(towerObject);
-            });
+            _cellManager.GenerateCell(towerWithCount);
         }
     }
 }
