@@ -10387,6 +10387,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1532937567}
     m_Modifications:
+    - target: {fileID: 1144468249464223560, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1144468249500932502, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -10478,6 +10482,14 @@ PrefabInstance:
     - target: {fileID: 1144468250160192430, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
       propertyPath: m_Name
       value: Tower List UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144468250470535486, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144468250470535486, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d61697cec43215141a7b40471d1fe8ef, type: 3}
@@ -10690,13 +10702,25 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: towers.Array.data[0].tower
+      value: 
+      objectReference: {fileID: 8591872126908235087, guid: c2cb143e967d7d24a9f1055cfc01776d, type: 3}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: towers.Array.data[1].count
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: towers.Array.data[1].tower
+      value: 
+      objectReference: {fileID: 8591872126908235087, guid: 6582d60cfdc798144bedb1a6701dadd9, type: 3}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: towers.Array.data[2].count
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
+      propertyPath: towers.Array.data[2].tower
+      value: 
+      objectReference: {fileID: 8591872126908235087, guid: a895ec06ab69f9e4981c76c3b482d8df, type: 3}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: towerMapStander.towerTilemap
       value: 

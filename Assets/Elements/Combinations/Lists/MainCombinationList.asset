@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combinations:
   - {fileID: 11400000, guid: 6755881a85a77b64398be489395b8844, type: 2}
+  - {fileID: 11400000, guid: d28a8aece7f9da849b044e25ac91c1e2, type: 2}
