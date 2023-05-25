@@ -10667,7 +10667,7 @@ PrefabInstance:
       objectReference: {fileID: 1370497700}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: maxStars
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7100774988446351441, guid: 27bdff172c17c114ab729e145f5da62a, type: 3}
       propertyPath: starsText

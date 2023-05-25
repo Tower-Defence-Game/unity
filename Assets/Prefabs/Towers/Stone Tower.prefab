@@ -67,7 +67,7 @@ MonoBehaviour:
   element: {fileID: 0}
   turret: {fileID: 4907148984467885585}
   tower: {fileID: 2659783132965955837}
-  bullet: {fileID: -4148505344077660681, guid: af3c0c9330826e245b8f86e64f04e4f4, type: 3}
+  bullet: {fileID: -4148505344077660681, guid: 6fb48b58e6419114fa1f43011abf024e, type: 3}
   size: {x: 2, y: 2}
   stars: 3
 --- !u!95 &1524442188092558675
