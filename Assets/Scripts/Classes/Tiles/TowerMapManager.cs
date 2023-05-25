@@ -3,6 +3,7 @@ using Classes.Tiles.Cell;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class TowerMapManager : MonoBehaviour
@@ -130,5 +131,15 @@ public class TowerMapManager : MonoBehaviour
         {
             _cellManager.GenerateCell(towerWithCount);
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
