@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e595c6b23ca4b928806ed702700317b, type: 3}
-  m_Name: MainCombinationList
+  m_Script: {fileID: 11500000, guid: 65373c7a0a6c42b280b153f96d6e5b71, type: 3}
+  m_Name: Explosion in 1.5 range
   m_EditorClassIdentifier: 
-  combinations:
-  - {fileID: 11400000, guid: 6755881a85a77b64398be489395b8844, type: 2}
-  - {fileID: 11400000, guid: d28a8aece7f9da849b044e25ac91c1e2, type: 2}
+  <OriginEffect>k__BackingField: {fileID: 0}
+  healthDurationEffectType: 2
+  healthModifier: -1
+  canExceedMaxHealth: 0
+  DeltaHealth: 0
+  targetingRange: 1.5
+  element: {fileID: 0}
