@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Classes.Elements;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace Bullets
             for (var hit = 0; hit < Math.Min(hits, _targetsBuffer.Length); hit++)
             {
                 var targetEnemy = _targetsBuffer[hit].GetComponent<Enemy>();
-                if (_used.ContainsKey(targetEnemy) || targetEnemy.Element != element) continue;
+                if (_used.ContainsKey(targetEnemy) || targetEnemy.ElementsManager.Elements.All(el => el != element)) continue;
                 
                 _targets.Add(targetEnemy);
             }
