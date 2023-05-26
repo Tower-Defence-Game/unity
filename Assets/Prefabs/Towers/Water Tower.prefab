@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a95f715000e4645a1bec3c8fbd757d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRange: 2.74
+  targetingRange: 1.7
 --- !u!114 &8591872126908235087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 5
+  damage: 23
   element: {fileID: 11400000, guid: 8d8d77cc2336d73499918555dba6a863, type: 2}
   turret: {fileID: 4907148984467885585}
   tower: {fileID: 2659783132965955837}
